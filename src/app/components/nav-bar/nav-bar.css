@@ -1,0 +1,72 @@
+
+
+/* ---------------------- BARRA DE  ------------------------ */
+nav {
+    margin: 0 auto;
+    background-color: white;
+    height: 80px;
+    padding: 12px 24px;
+    box-shadow: 1px 1px 10px #dadada;
+    border-start-start-radius: 25px;
+    border-start-end-radius: 25px;
+}
+
+.container-nav {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+/* ---------------------- OPCIONES ------------------------ */
+nav ul {
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+    margin: 0;
+    padding: 0;
+    color: var(--color-blanco);
+}
+
+nav ul li:hover{
+    color: var(--color-secundario);
+    font-size: 103%;
+    font-style: inherit;
+}
+
+
+
+
+
+/* ---------------------- LOGO ------------------------ */
+.logo {
+    height: 100%;
+    transition: 0.5s;
+}
+.logo:hover{
+    height: 101.5%;
+}
+
+
+
+
+
+/* ///////////////////////////////////// */
+
+nav.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
