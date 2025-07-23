@@ -1,0 +1,56 @@
+
+.image_hero {
+    /* texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: antiquewhite;
+
+    /* fondo */
+    width: 100%;
+    height: 100vh; 
+    background-size: cover;
+    transition: background-image 1s ease-in-out;
+    background-position: center;
+    animation: cambiarFondo 25s infinite;
+}
+
+/* fondo */
+@keyframes cambiarFondo {
+    0% {
+        background-image: url('/images/hero_provisional_I.png');
+    }
+    33% {
+        background-image: url('/images/hero_provisional_II.png');
+    }
+    66% {
+        background-image: url('/images/hero_provisional_IIi.png'); 
+    }
+    100% {
+        background-image: url('/images/hero_provisional_IV.png');
+    }
+}
+/*  texto  */
+
+
+
+.image_hero > h2{
+    animation: animacionTexto 10s forwards;
+} 
+@keyframes animacionTexto {
+    0% {
+        font-size:  100px; 
+    }
+    33% {
+        font-size:  120px;
+    }
+    66% {
+        font-size:  125px;
+    }
+    100% {
+        font-size:  130px;
+    }
+} 
+
+/* ------------------------------ FIN HERO -------------------------------------- */

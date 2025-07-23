@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+
+
+
+
+:root {
+
+    /* PRINCIPAL */
+    --color-principal: #FF6B00;
+    --color-secundario: #8E44AD;
+    --color-blanco-ludy: #F5F5F5;
+    --color-negro-ludy: #333333;
+
+    /* ACCIONES */
+    --color-accion-exito: #27AE60;
+    --color-accion-error: #E74C3C;
+}
+
+/* FONDO */
+body {
+    padding-block: 2.5%;
+    background-color: var(--color-blanco-ludy);
+    max-width: 85%;
+    margin: 0 auto;
+}
