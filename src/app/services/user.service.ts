@@ -4,7 +4,7 @@ import { IUser } from '../interfaces/IUser';
 import { lastValueFrom } from 'rxjs';
 
 
-type LoginResponse= {
+type LoginResponse = {
   succes: string,
   user: IUser,
 }
@@ -14,13 +14,13 @@ type LoginResponse= {
 })
 export class UserService {
 
-  private httpclient = inject (HttpClient);
-  private baseUrl:string ='http://localhost:8000/users';
+  private httpclient = inject(HttpClient);
+  private baseUrl: string = 'http://localhost:8000/auth';
 
-  registro(body: IUser){
+  registro(body: IUser) {
     return lastValueFrom(
-      this.httpclient.post<{succes: string}>(`${this.baseUrl}/register`, body)
+      this.httpclient.post<{ succes: string }>(`${this.baseUrl}/register`, body)
     )
   }
-  
+
 }
