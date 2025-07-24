@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/IUser';
 import { lastValueFrom } from 'rxjs';
+import { IUserLogin } from '../interfaces/IUserLogin';
 
 
 type LoginResponse = {
@@ -23,4 +24,9 @@ export class UserService {
     )
   }
 
+  login(body: IUserLogin) {
+    return lastValueFrom(
+      this.httpclient.post<LoginResponse>(`${this.baseUrl}/login`, body)
+    );
+  }
 }
