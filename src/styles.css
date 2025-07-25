@@ -1,26 +1,69 @@
+/*___________________ Fuente principal ______________________ */
 
-
-
-
-
-
-:root {
-
-    /* PRINCIPAL */
-    --color-principal: #FF6B00;
-    --color-secundario: #8E44AD;
-    --color-blanco-ludy: #F5F5F5;
-    --color-negro-ludy: #333333;
-
-    /* ACCIONES */
-    --color-accion-exito: #27AE60;
-    --color-accion-error: #E74C3C;
+@font-face {
+  font-family: 'Rubik200';
+  src: url('assets/Rubik/static/Rubik-Medium.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
 }
 
-/* FONDO */
+@font-face {
+  font-family: 'Rubik400';
+  src: url('assets/Rubik/static/Rubik-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik700';
+  src: url('assets/Rubik/static/Rubik-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
-    padding-block: 2.5%;
-    background-color: var(--color-blanco-ludy);
-    max-width: 85%;
-    margin: 0 auto;
+  font-family: 'Rubik700', sans-serif;
+}
+
+
+
+/* _____________ Colores primcipales _________________ */
+:root {
+
+  /* PRINCIPAL */
+  --color-principal: #FF6B00;
+  --color-secundario: #8E44AD;
+  --color-blanco-ludy: #F5F5F5;
+  --color-negro-ludy: #333333;
+
+  /* ACCIONES */
+  --color-accion-exito: #27AE60;
+  --color-accion-error: #E74C3C;
+}
+
+
+
+
+/* _____________________________ fondo de la HOME ________________________________ */
+body {
+  padding-block: 2.5%;
+  max-width: 85%;
+  margin: 0 auto;
+  background: linear-gradient(-45deg, #110020, #8E44AD, #00043d, #4a0964);
+  background-size: 400% 400%;
+  animation: moveBackground 10s ease infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }

@@ -1,3 +1,20 @@
+/* export interface IEvent {
+
+    // EVENTS PROVISIONA
+    title: string; //he cambiado titulo por 'title'
+    description: string;
+    price: number;
+    date: Date;
+
+    capacity: number;
+    address: string;
+
+    latitude: number;
+    longitude: number;
+    status: boolean;
+} */
+
+
 export interface IEvent {
     id: number
     title: string
@@ -13,3 +30,4 @@ export interface IEvent {
     categories_id: number
     users_id: number
 }
+
