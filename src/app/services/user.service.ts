@@ -6,8 +6,9 @@ import { IUserLogin } from '../interfaces/IUserLogin';
 
 
 type LoginResponse = {
-  succes: string,
-  user: IUser,
+  success: boolean,
+  message: string,
+  user: IUser
 }
 
 @Injectable({
