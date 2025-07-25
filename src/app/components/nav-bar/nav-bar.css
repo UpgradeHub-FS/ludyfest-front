@@ -1,7 +1,6 @@
+/* __________________ barra de tareas ___________________ */
 
-
-/* ---------------------- BARRA DE  ------------------------ */
-nav {
+.main_nav {
     margin: 0 auto;
     background-color: white;
     height: 80px;
@@ -11,7 +10,7 @@ nav {
     border-start-end-radius: 25px;
 }
 
-.container-nav {
+.nav__container {
     display: flex;
     justify-content: space-between;
     height: 100%;
@@ -20,11 +19,8 @@ nav {
 
 
 
-
-
-
-/* ---------------------- OPCIONES ------------------------ */
-nav ul {
+/* ______menu ______ */
+.nav__menu {
     height: 100%;
     list-style: none;
     display: flex;
@@ -36,22 +32,23 @@ nav ul {
     color: var(--color-blanco);
 }
 
-nav ul li:hover{
+.nav__item:hover {
     color: var(--color-secundario);
     font-size: 103%;
     font-style: inherit;
+    color: var(--color-principal);
+    text-shadow: 3px 3px 5px var();
 }
 
 
 
-
-
-/* ---------------------- LOGO ------------------------ */
+/* _________ logo _________ */
 .logo {
     height: 100%;
     transition: 0.5s;
 }
-.logo:hover{
+
+.logo:hover {
     height: 101.5%;
 }
 
@@ -59,14 +56,33 @@ nav ul li:hover{
 
 
 
-/* ///////////////////////////////////// */
 
+
+
+
+
+
+/* _________________ ANCLAR BARRA DE TAREAS ______________ */
 nav.fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-radius: 0 0 25px 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+/* __________________________ FORMATO MOVIL ____________________________ */
+
+@media (max-width: 1000px) {
+    .logo {
+        display: none;
+    }
+
+    .nav__container {
+        justify-content: space-around;
+        font-size: 30px;
+        color: var(--color-principal);
+    }
 }

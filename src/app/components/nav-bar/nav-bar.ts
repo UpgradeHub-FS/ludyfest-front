@@ -13,7 +13,4 @@ export class NavBar {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isFixed = window.scrollY > 50;}
-
-
-    
 }
