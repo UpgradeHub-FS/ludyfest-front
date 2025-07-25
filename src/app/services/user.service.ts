@@ -21,7 +21,7 @@ export class UserService {
 
   registro(body: IUser) {
     return lastValueFrom(
-      this.httpclient.post<{ succes: string }>(`${this.baseUrl}/register`, body)
+      this.httpclient.post<LoginResponse>(`${this.baseUrl}/register`, body)
     )
   }
 
