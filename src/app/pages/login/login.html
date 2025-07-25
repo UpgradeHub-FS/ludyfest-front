@@ -1,12 +1,26 @@
 <h2 class="my-5">Login</h2>
+
 <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <div class="mb3">
+
+    <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="email" class="form-control" formControlName="email">
+        @if (checkError('email', 'required')) {
+        <p class="error">El email es obligatorio</p>
+        }
+        @if (checkError('email', 'pattern')) {
+        <p class="error">El formato del email no es válido</p>
+        }
     </div>
-    <div class="mb3">
+
+    <div class="mb-3">
         <label class="form-label">Password</label>
         <input type="password" class="form-control" formControlName="password">
+        @if (checkError('password', 'required')) {
+        <p class="error">La contraseña es obligatoria</p>
+        }
     </div>
-    <input type="submit" value="Enviar" class="btn btn-primary mt-3">
+
+    <input type="submit" value="Enviar" class="btn btn-primary mt-3" [disabled]="formulario.invalid">
+
 </form>
