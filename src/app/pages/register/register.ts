@@ -1,6 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -16,18 +16,29 @@ export class Register {
   router = inject (Router);
 
   formulario: FormGroup = new FormGroup({
-    name: new FormControl(),
-    email: new FormControl(),
-    password: new FormControl(),
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    ]),
+    password: new FormControl(null,[Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{5,10}$/)]),
+    repite_password: new FormControl(),
     rol: new FormControl(),
-  })
+  }, [this.passwordValidator]);
+   checkError(field: string, error: string) {
+    return this.formulario.get(field)?.hasError(error) &&
+      this.formulario.get(field)?.touched;
+  }
 
   async onSubmit(){
     try{
       const response = await this.UserService.registro(this.formulario.value);
       await Swal.fire({
         title: 'Exito',
-        text:'Creado exitosamente',
+        text:'Usuario creado correctamente',
         icon:'success'
       });
       this.router.navigateByUrl('/home')
@@ -43,5 +54,20 @@ export class Register {
     }
     
   }
+
+   passwordValidator(form: AbstractControl){
+    //extraer los valores de password y repite_password
+    const passwordValue = form.get('password')?.value;
+    const repitePasswordValue = form.get('repite_password')?.value;
+
+    if(passwordValue !== repitePasswordValue){
+      form.get('repite_password')?.setErrors({passwordValidator: true});
+
+      return { passwordvalidator: true};
+    }
+
+    return null;
+  }
+
 
 }
