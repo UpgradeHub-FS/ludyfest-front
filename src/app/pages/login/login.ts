@@ -23,13 +23,7 @@ export class Login {
       console.log(response);
       Swal.fire('Éxito', response.message, 'success');
     } catch (error: any) {
-      const detalle = error.error?.detail;
-
-      const mensaje = Array.isArray(detalle)
-        ? 'Faltan campos obligatorios'
-        : detalle || 'Error en el login';
-
-      Swal.fire('Error', mensaje, 'error');
+      Swal.fire('Error', error.error?.detail || 'Error en el login', 'error');
     }
   }
 
