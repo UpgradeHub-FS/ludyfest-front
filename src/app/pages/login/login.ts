@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import Swal from 'sweetalert2';
 
@@ -13,9 +13,19 @@ export class Login {
   userService = inject(UserService);
 
   formulario: FormGroup = new FormGroup({
-    email: new FormControl,
-    password: new FormControl,
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    ]),
+    password: new FormControl('', [
+      Validators.required
+    ])
   });
+
+  checkError(field: string, error: string) {
+    return this.formulario.get(field)?.hasError(error) &&
+      this.formulario.get(field)?.touched;
+  }
 
   async onSubmit() {
     try {
