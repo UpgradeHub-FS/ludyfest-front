@@ -25,9 +25,11 @@ export class PrivateEventList {
     );
   }
 
-  async NgOnInit() {//al iniciar la pag que me guarde la info en el arrEvents
+  async ngOnInit() {//al iniciar la pag que me guarde la info en el arrEvents
     const response = await this.eventService.getAll();
+    console.log('Eventos recibidos:', response);
     this.arrEvents = response;
+
   }
 
 
