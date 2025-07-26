@@ -9,11 +9,11 @@ import { IEvent } from '../interfaces/IEvents';
 export class EventService {
 
   private httpClient = inject(HttpClient);
-  private baseUrl: string = 'http://localhost:8000/private/events';
+  private baseUrl: string = 'http://localhost:8000/events';
 
   getAll() {
     return lastValueFrom(
-      this.httpClient.get<IEvent[]>(`${this.baseUrl}/admin`)
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}`)
     )
   }
 

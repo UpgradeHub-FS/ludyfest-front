@@ -18,6 +18,12 @@ export class PrivateEventList {
 
   eventService = inject(EventService);
 
+  async ngOnInit() {//al iniciar la pag que me guarde la info en el arrEvents
+    const response = await this.eventService.getAll();
+    console.log('Eventos recibidos:', response);
+    this.arrEvents = response;
+
+  }
   get filteredEvents() {
     const term = this.searchTerm.toLowerCase();
     return this.arrEvents.filter(event =>
@@ -25,12 +31,6 @@ export class PrivateEventList {
     );
   }
 
-  async ngOnInit() {//al iniciar la pag que me guarde la info en el arrEvents
-    const response = await this.eventService.getAll();
-    console.log('Eventos recibidos:', response);
-    this.arrEvents = response;
-
-  }
 
 
 }
