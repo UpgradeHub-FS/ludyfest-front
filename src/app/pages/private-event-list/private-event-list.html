@@ -11,9 +11,10 @@
 </div>
 
 
+
+@for (event of arrEvents; track event.id) {
 <div class="event-card">
-    @for (event of arrEvents; track event.id) {
-    <img src="" alt="" class="event-image">
+    <img [src]="'public/images/imagen-festival.jpg'" alt="{{event.title}}" class="event-image">
     <div class="event-info">
         <h3>{{event.title}}</h3>
         <p>
@@ -23,9 +24,9 @@
     </div>
     <button class="btn btn-primary">Actualizar</button>
     <button class="btn btn-danger">Borrar</button>
-    <button></button>
-    }
 </div>
+}
+
 <!-- LISTADO DE LOS EVENTOS -->
 <!-- <div *ngFor="let event of filteredEvents" class="event-card">
   <img [src]="event.imageUrl" alt="Imagen del evento" class="event-image" />
