@@ -9,7 +9,7 @@ import { IEvent } from '../interfaces/IEvents';
 export class EventService {
 
   private httpClient = inject(HttpClient);
-  private baseUrl: string = 'http://localhost:8000/events';
+  private baseUrl: string = 'http://localhost:8000/private/events';
 
   getAll() {
     return lastValueFrom(

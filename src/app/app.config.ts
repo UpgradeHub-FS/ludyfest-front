@@ -5,14 +5,16 @@ import { authInterceptor } from './interceptors/auth-interceptor';
 
 import { routes } from './app.routes';
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()), //recoger la parte variable de la url
 
-    provideHttpClient(
-      withInterceptors([authInterceptor]) //interceptor
-    )
+    provideHttpClient()
+    /*     provideHttpClient(
+          withInterceptors([authInterceptor]) //interceptor
+        ) */
   ]
 };
