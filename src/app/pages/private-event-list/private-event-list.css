@@ -57,7 +57,7 @@
     color: #6a1b9a;
 }
 
-/* CONTROLES */
+/* BUSCADORES */
 .controls {
     display: flex;
     flex-wrap: wrap;
@@ -187,7 +187,6 @@ select {
 }
 
 /* RESPONSIVE */
-
 /* TABLET */
 @media (max-width: 992px) {
     .header {
@@ -216,13 +215,12 @@ select {
 
 }
 
-/* MÓVIL PEQUEÑO */
+/* MÓVIL*/
 @media (max-width: 600px) {
     @media (max-width: 600px) {
         .event-image {
             width: 120px;
             height: 160px;
-            /* más alto que ancho */
             aspect-ratio: auto;
             flex-shrink: 0;
             border-radius: 12px;

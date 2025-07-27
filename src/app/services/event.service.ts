@@ -14,7 +14,23 @@ export class EventService {
   getAll() {
     return lastValueFrom(
       this.httpClient.get<IEvent[]>(`${this.baseUrl}`)
-    )
+    );
   }
+  /*getByCategory() {
+ 
+  } */
+
+  updateEvent(event_id: number, event: Event) {
+    return lastValueFrom(
+      this.httpClient.put<IEvent>(`${this.baseUrl}/${event_id}`, event)
+    );
+  }
+
+  deleteEventById(event_id: number) {
+    return lastValueFrom(
+      this.httpClient.delete<IEvent>(`${this.baseUrl}/${event_id}`)
+    );
+  }
+
 
 }

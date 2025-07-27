@@ -46,7 +46,7 @@
             </div>
 
             <div class="event-actions">
-                <button class="btn btn-update">Actualizar</button>
+                <button [routerLink]="['/eventos', event.id]" class="btn btn-update">Actualizar</button>
                 <button class="btn btn-delete" (click)="onClick(event.id)">Borrar</button>
             </div>
 
