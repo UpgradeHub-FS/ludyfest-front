@@ -7,7 +7,6 @@ import { Register } from './pages/register/register';
 import { Login } from './pages/login/login';
 import { EventsComponent } from './pages/events/events.component';
 import { PrivateUserComponent } from './pages/private-user/private-user.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { PrivateUserList } from './pages/private-user-list/private-user-list';
 
 
