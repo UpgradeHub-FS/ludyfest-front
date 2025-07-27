@@ -1,1 +1,71 @@
-<p>private-event-edit works!</p>
+<h2 class="title">Actualizar</h2>
+<div class="container">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="" class="form-label">ID</label>
+            <input type="text" class="form-control" formControlName="id">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Title</label>
+            <input type="text" class="form-control" formControlName="title">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                formControlName="description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Date</label>
+            <input type="text" class="form-control" formControlName="date">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Price</label>
+            <input type="text" class="form-control" formControlName="price">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Capacity</label>
+            <input type="text" class="form-control" formControlName="capacity">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Adress</label>
+            <input type="text" class="form-control" formControlName="adress">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Latitude</label>
+            <input type="text" class="form-control" formControlName="latitude">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Longitude</label>
+            <input type="text" class="form-control" formControlName="longitude">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Image</label>
+            <input type="file" class="form-control-file" formControlName="image">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Status</label>
+            <input type="text" class="form-control" formControlName="status">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Categories_id</label>
+            <select class="form-select" formControlName="catergories_id">
+                <option value="">Categorías</option>
+                <option value=1>Conciertos</option>.
+                <option value=2>Parties</option>
+                <option value=3>Experiencias</option>
+                <option value=4>Torneos</option>
+                <option value=5>Cultura</option>
+                <option value=6>Cine</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Users_id</label>
+            <select class="form-select" formControlName="users_id">
+                <option value="guest">Guest</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <input type="submit" value="Enviar" class="btn btn-info">
+    </form>
+</div>

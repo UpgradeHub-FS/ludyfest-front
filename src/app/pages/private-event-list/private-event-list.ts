@@ -1,6 +1,6 @@
 import { EventService } from './../../services/event.service';
 import { IEvent } from './../../interfaces/IEvents';
-import { Component,OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -71,7 +71,7 @@ export class PrivateEventList {
 
 
 
-  async onClick(event_id: number) {
+  async onClick(idEvent: number) {
     try {
       const result = await Swal.fire({
         title: "Borrar",
@@ -84,7 +84,7 @@ export class PrivateEventList {
       })
 
       if (result.isConfirmed) {
-        await this.eventService.deleteEventById(event_id);
+        await this.eventService.deleteEventById(idEvent);
         Swal.fire('Éxito', 'Se ha borrado el evento', 'success');
 
         const response = await this.eventService.getAll();
@@ -93,27 +93,6 @@ export class PrivateEventList {
     } catch (error) {
       Swal.fire('Error', 'El evento no existe. Revisa', 'error');
     }
-
-
-
-    /* Para el formulario o lo que sea para actualizar->    async onSubmit() {
-          try {
-            const response = await this.eventService.updateEvent(this.event_id, this.formulario.value);
-            Swal.fire('Éxito', 'Se han actualizado los datos del empleado', 'success');
-            this.router.navigateByUrl('/events');
-            Swal.fire({
-              width: 600,
-              padding: "3em",
-              color: "#716add",
-              background: "",
-              backdrop:""
-            });
-          } catch (error) {
-            Swal.fire('Error', 'Revisa los datos del formulario', 'error');
-          }
-        } */
-
-
 
   }
 }
