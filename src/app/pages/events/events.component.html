@@ -1,3 +1,20 @@
 <!DOCTYPE html>
-<h2>Detalle del Evento</h2>
-<p>ID del evento: {{ id }}</p>
+<div *ngIf="event; else loading">
+  <h2>{{ event.title }}</h2>
+
+  <img [src]="event.image" alt="Imagen del evento" class="event-image" />
+
+  <p><strong>Fecha:</strong> {{ event.date | date:'mediumDate' }}</p>
+  <p><strong>Capacidad:</strong> {{ event.capacity }}</p>
+  <p><strong>Estado:</strong>
+    <span [ngClass]="getStatusClass(event.status)">
+      {{ getStatusText(event.status) }}
+    </span>
+  </p>
+
+  <p class="description">{{ event.description }}</p>
+</div>
+
+<ng-template #loading>
+  <p class="loading-message">Cargando detalles del evento...</p>
+</ng-template>
