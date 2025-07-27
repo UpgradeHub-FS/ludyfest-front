@@ -9,12 +9,14 @@ import { EventsComponent } from './pages/events/events.component';
 import { PrivateUserComponent } from './pages/private-user/private-user.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { PrivateUserList } from './pages/private-user-list/private-user-list';
+import { PrivateEventEdit } from './pages/private-event-edit/private-event-edit';
 
 
 export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'events', component: PublicEventListComponent },
     { path: 'events/private/admin', component: PrivateEventList },
+    { path: 'events/private/admin/:id', component: PrivateEventEdit },
     { path: 'users/private/admin', component: PrivateUserList },
     { path: 'events/:id', component: EventsComponent },
     { path: 'login', component: Login },

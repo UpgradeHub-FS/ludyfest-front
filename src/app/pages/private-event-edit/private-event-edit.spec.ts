@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditEvent } from './edit-event';
+import { PrivateEventEdit } from './private-event-edit';
 
-describe('EditEvent', () => {
-  let component: EditEvent;
-  let fixture: ComponentFixture<EditEvent>;
+describe('PrivateEventEdit', () => {
+  let component: PrivateEventEdit;
+  let fixture: ComponentFixture<PrivateEventEdit>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditEvent]
+      imports: [PrivateEventEdit]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditEvent);
+    fixture = TestBed.createComponent(PrivateEventEdit);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
