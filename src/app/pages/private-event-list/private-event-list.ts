@@ -1,6 +1,6 @@
 import { EventService } from './../../services/event.service';
 import { IEvent } from './../../interfaces/IEvents';
-import { Component, inject } from '@angular/core';
+import { Component,OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-private-event-list',
+  standalone: true,
   imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './private-event-list.html',
   styleUrl: './private-event-list.css'

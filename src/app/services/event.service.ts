@@ -7,13 +7,18 @@ import { IEvent } from '../interfaces/IEvents';
   providedIn: 'root'
 })
 export class EventService {
-
   private httpClient = inject(HttpClient);
   private baseUrl: string = 'http://localhost:8000/events';
 
   getAll() {
     return lastValueFrom(
       this.httpClient.get<IEvent[]>(`${this.baseUrl}`)
+    );
+  }
+
+  getEventById(id: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent>(`${this.baseUrl}/${id}`)
     );
   }
 
@@ -28,6 +33,4 @@ export class EventService {
       this.httpClient.delete<IEvent>(`${this.baseUrl}/${event_id}`)
     );
   }
-
-
 }
