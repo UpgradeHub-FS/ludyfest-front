@@ -30,4 +30,16 @@ export class UserService {
       this.httpclient.post<LoginResponse>(`${this.baseUrl}/login`, body)
     );
   }
+
+    getAll() {
+      return lastValueFrom(
+        this.httpclient.get<IUser[]>('http://localhost:8000/users')
+      );
+    }
+
+    deleteUserById(user_id: number) {
+        return lastValueFrom(
+          this.httpclient.delete<IUser>(`http://localhost:8000/users/${user_id}`)
+        );
+      }
 }
