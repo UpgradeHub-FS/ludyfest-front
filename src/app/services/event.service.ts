@@ -16,9 +16,6 @@ export class EventService {
       this.httpClient.get<IEvent[]>(`${this.baseUrl}`)
     );
   }
-  /*getByCategory() {
- 
-  } */
 
   updateEvent(event_id: number, event: Event) {
     return lastValueFrom(

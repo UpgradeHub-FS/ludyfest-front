@@ -17,6 +17,7 @@ export class PrivateEventList {
 
   searchTerm = '';
   arrEvents: IEvent[] = []
+  eventService = inject(EventService);
   sortOption = '';
   selectedCategory = '';
   categories: { [key: number]: string } = {
@@ -28,7 +29,6 @@ export class PrivateEventList {
     6: 'Cine',
   };
 
-  eventService = inject(EventService);
 
   async ngOnInit() {//al iniciar la pag que me guarde la info en el arrEvents
     const response = await this.eventService.getAll();
@@ -37,8 +37,7 @@ export class PrivateEventList {
   }
 
 
-
-  // Este método se llama cuando se cambia de categoría
+  // Cuando se cambia de categoría...
   onChange(event: any) {
     this.selectedCategory = event.target.value;
   }
@@ -93,6 +92,7 @@ export class PrivateEventList {
     } catch (error) {
       Swal.fire('Error', 'El evento no existe. Revisa', 'error');
     }
+
 
 
     /* Para el formulario o lo que sea para actualizar->    async onSubmit() {
