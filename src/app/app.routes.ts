@@ -6,7 +6,7 @@ import { PrivateEventList } from './pages/private-event-list/private-event-list'
 import { Register } from './pages/register/register';
 import { Login } from './pages/login/login';
 import { EventsComponent } from './pages/events/events.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { PrivateUserComponent } from './pages/private-user/private-user.component';
 
 
 export const routes: Routes = [
@@ -16,9 +16,10 @@ export const routes: Routes = [
     { path: 'events/:id', component: EventsComponent },
     { path: 'login', component: Login },
     { path: 'register', component: Register },
-    { path: 'profile', component: UserProfileComponent },
+    { path: 'profile', component: PrivateUserComponent },
     { path: '**', redirectTo: 'home' } //si no encuentra la pag que vaya al home
 ];
+
 
 
 
