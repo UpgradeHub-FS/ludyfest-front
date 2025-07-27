@@ -1,0 +1,44 @@
+<!-- TÍTULO -->
+<div class="container">
+    <h2 class="title">Admin Users</h2>
+
+    <section class="my-3">
+
+        <!-- SELECTOR DE CATEGORÍAS -->
+        <div class="controls">
+
+
+            <!-- BÚSQUEDA Y ORDEN -->
+            <input type="text" placeholder="🔎 Buscar..." [(ngModel)]="searchTerm" />
+
+            <select [(ngModel)]="sortOption" class="form-select">
+                <option value="">Ordenar por...</option>
+                <option value="az">▶ A-Z</option>
+                <option value="za">◀ Z-A</option>
+
+            </select>
+        </div>
+
+        <!-- LISTADO DE EVENTOS -->
+        @for (user of filteredUsers; track user.id) {
+        <div class="user-card">
+
+
+            <div class="user-info">
+                <h3>👤 {{ user.name }}</h3>
+
+                <p>Email: {{ user.email }}</p>
+                <p>Password: {{ user.password}}</p>
+                <p>Rol: {{ user.rol }}</p>
+
+            </div>
+
+            <div class="user-actions">
+                <button [routerLink]="['/users', user.id]" class="btn btn-update">Actualizar</button>
+                <button class="btn btn-delete" (click)="onClick(user.id)">Borrar</button>
+            </div>
+
+        </div>
+        }
+    </section>
+</div>
