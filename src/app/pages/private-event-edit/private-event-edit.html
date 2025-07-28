@@ -1,6 +1,5 @@
-<p>{{idEvent}}</p>
 <section>
-    <h2 class="my-5">Actualizar</h2>
+    <h2 class="my-5">Actualizar Evento</h2>
     <div class="container">
         <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
             <div class="mb-3">
@@ -18,7 +17,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Date</label>
-                <input type="text" class="form-control" formControlName="date">
+                <input type="date" class="form-control" formControlName="date">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Price</label>
@@ -29,8 +28,8 @@
                 <input type="text" class="form-control" formControlName="capacity">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">Adress</label>
-                <input type="text" class="form-control" formControlName="adress">
+                <label for="" class="form-label">Address</label>
+                <input type="text" class="form-control" formControlName="address">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Latitude</label>
@@ -50,7 +49,8 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Categories_id</label>
-                <select class="form-select" formControlName="categories_id">
+                <input type="text" class="form-control" formControlName="categories_id">
+                <!--                 <select class="form-select" formControlName="categories_id">
                     <option value="">Categorías</option>
                     <option value=1>Conciertos</option>.
                     <option value=2>Parties</option>
@@ -58,15 +58,12 @@
                     <option value=4>Torneos</option>
                     <option value=5>Cultura</option>
                     <option value=6>Cine</option>
-                </select>
+                </select> -->
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Users_id</label>
-                <select class="form-select" formControlName="users_id">
-                    <option value="guest">Guest</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
+                <input type="text" class="form-control" formControlName="users_id">
+
             </div>
             <input type="submit" value="Enviar" class="btn btn-info">
         </form>
