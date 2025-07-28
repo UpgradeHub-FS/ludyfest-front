@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { IEvent } from '../../interfaces/IEvents';
 import { CardEvent } from '../card-event/card-event';
+import { EventService } from '../../services/event.service';
+
 
 @Component({
   selector: 'card-list',
@@ -9,5 +11,16 @@ import { CardEvent } from '../card-event/card-event';
   styleUrl: './card-list.css'
 })
 export class CardList {
-  @Input() events: IEvent[] = [];
+
+  events: IEvent[] = [];
+
+  eventsService = inject(EventService);
+
+
+  async ngOnInit() {
+    const response = await this.eventsService.getAllHome();
+    this.events = response;
+
+  }
+
 }

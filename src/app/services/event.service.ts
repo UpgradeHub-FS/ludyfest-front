@@ -16,7 +16,14 @@ export class EventService {
     );
   }
 
-  getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!
+  getAllHome() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/recently`)
+    );
+  }
+
+
+  getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
     return lastValueFrom(
       this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
