@@ -71,7 +71,7 @@ export class PrivateUserList {
           this.arrEvents = response;
         }
       } catch (error) {
-        Swal.fire('Error', 'El evento no existe. Revisa', 'error');
+        Swal.fire('Error', 'El usuario no existe. Revisa', 'error');
       }
     }
 
