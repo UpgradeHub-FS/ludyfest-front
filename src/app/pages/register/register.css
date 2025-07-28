@@ -7,7 +7,7 @@ section {
 h2 {
   
   font-size: 45px;
-  color: var(--color-secundario); 
+  color: var(--color-principal); 
    opacity: 0.5; /
 }
 
