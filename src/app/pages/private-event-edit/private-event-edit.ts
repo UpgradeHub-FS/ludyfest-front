@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrl: './private-event-edit.css'
 })
 export class PrivateEventEdit {
-  @Input() idEvent: number = 0;
+  @Input() idEvent: number = 0; //input llama al id de la ruta, copiar y pegar el nombre
 
   eventService = inject(EventService);
   router = inject(Router)
@@ -39,14 +39,14 @@ export class PrivateEventEdit {
 
     } catch (error) {
       Swal.fire('Error', 'El evento no existe', 'error')
-      this.router.navigateByUrl('/events/private/admin')
+      /* this.router.navigateByUrl('/events/private/admin') */
     }
   }
   async onSubmit() {
     try {
       const response = await this.eventService.updateEvent(this.idEvent, this.formulario.value);
-      Swal.fire('Éxito', 'Se han actualizado los datos del empleado', 'success');
-      this.router.navigateByUrl('/events');
+      Swal.fire('Éxito', 'Se han actualizado los datos del evento', 'success');
+      this.router.navigateByUrl('/events/private/admin');
       Swal.fire({
         width: 600,
         padding: "3em",
