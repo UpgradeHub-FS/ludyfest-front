@@ -1,28 +1,31 @@
 .event_section {
-    text-align: center;
-    gap: 50px;
-    box-shadow: 1px 1px 10px #dadada;
-    background-color: white;
-    width: 100%;
-    overflow: visible;
-    padding-bottom: 100px;
+  text-align: center;
+  gap: 50px;
+  box-shadow: 1px 1px 10px #dadada;
+  background-color: white;
+  width: 100%;
+  overflow: visible;
+  padding: 0px 10px 100px 10px;
+
 }
+
 .title {
-    padding-block: 50px;
-    font-size: 90px;
-    color: var(--color-negro-lady);
+  padding-block: 50px;
+  font-size: 90px;
+  color: var(--color-negro-lady);
 }
+
 .logo {
-    display: none;
+  display: none;
 }
 
 .event__cards {
-    grid-template-columns: repeat(4, 1fr);
-    display: grid;
-    align-items: center;
-    margin-left: 2%;
-    margin-right: 2%;
-    gap: 45px;
+  grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  align-items: center;
+  margin-left: 2%;
+  margin-right: 2%;
+  gap: 45px;
 }
 
 
@@ -30,32 +33,32 @@
 
 /*_____________________ 3 cards ______________________ */
 @media (max-width: 1864px) {
-    .event__cards {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .event__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /*_____________________ 2 cards ______________________ */
 
 @media (max-width: 1420px) {
-    .event__cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .event__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /*_____________________ 1 card ______________________ */
 @media (max-width: 1000px) {
 
-    .event__cards {
-        grid-template-columns: repeat(1, 1fr);
-    }
+  .event__cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
-    .logo {
-        display: flex;
-        width: 100%;
-    }
+  .logo {
+    display: flex;
+    width: 100%;
+  }
 
-    .title {
-        display: none;
-    }
+  .title {
+    display: none;
+  }
 }
