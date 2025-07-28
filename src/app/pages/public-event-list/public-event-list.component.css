@@ -1,51 +1,6 @@
-/* TIPOGRAFÍA GENERAL */
-* {
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Logo */
-.logo-container {
-  display: flex;
-  justify-content: inherit;
-  margin-bottom: 20px;
-}
-
-.logo-container img {
-  height: 100px;
-  object-fit: contain;
-}
-
-/* Encabezado: logo + el menú */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-/* estilo para el Navbar */
-.navbar ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.navbar a:hover {
-  color: #6a1b9a;
-}
-
-.menu-icon {
-  cursor: pointer;
-  font-size: 20px;
+section {
+  margin: 0 auto;
+  padding: 40px;
 }
 
 /* para el Hover */
@@ -68,7 +23,8 @@ select {
   border-radius: 6px;
   border: 1px solid #ccc;
   flex: 1;
-  font-size: 14px; /* Tamaño de fuente consistente */
+  font-size: 14px;
+  /* Tamaño de fuente consistente */
 }
 
 /* Tarjeta de evento */
@@ -81,13 +37,17 @@ select {
   margin-bottom: 12px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Suavidad al hacer hover */
-  cursor: pointer; /* para cambiar el cursor al pasar el mouse */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  /* Suavidad al hacer hover */
+  cursor: pointer;
+  /* para cambiar el cursor al pasar el mouse */
 }
 
 .event-card:hover {
-  background-color: #f9f9f9; /* Fondo más claro al pasar el mouse */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra un poco más pronunciada */
+  background-color: #f9f9f9;
+  /* Fondo más claro al pasar el mouse */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Sombra un poco más pronunciada */
 }
 
 .event-image {
@@ -105,13 +65,14 @@ select {
 .event-info h3 {
   margin: 0;
   font-size: 18px;
-  font-weight: 600; 
+  font-weight: 600;
 }
 
 .event-info p {
   margin: 4px 0 0;
   font-size: 14px;
-  color: #666; /* color suave para la fecha */
+  color: #666;
+  /* color suave para la fecha */
 }
 
 /* Badge de estado del festival si esta disponible o cancelado */
@@ -135,6 +96,5 @@ select {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  color: #5A2DA4; 
+  color: #5A2DA4;
 }
-
