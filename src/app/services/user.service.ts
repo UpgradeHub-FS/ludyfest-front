@@ -44,4 +44,13 @@ export class UserService {
       this.httpclient.delete<IUser>(`http://localhost:8000/users/${user_id}`)
     );
   }
+
+
+  isLogged(){
+    const token = localStorage.getItem('token_lu')
+    if(!token){
+      return false
+    }
+    return true
+  }
 }
