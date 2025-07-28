@@ -12,9 +12,9 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()), //recoger la parte variable de la url
 
-    provideHttpClient()
-    /*     provideHttpClient(
-          withInterceptors([authInterceptor]) //interceptor
-        ) */
+    provideHttpClient(
+      withInterceptors([authInterceptor])//añadimos esta funcion para poder trabajar con el interceptor que creamos previamente
+    ) //con esto podemos lanzar peticiones internas a nuestro back
+   
   ]
 };
