@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<div *ngIf="event; else loading">
-  <h2>{{ event.title }}</h2>
+<h2>Event Details</h2>
 
-  <img [src]="event.image" alt="Imagen del evento" class="event-image" />
+<div class="event-card">
+  <h3>{{ (event$ | async)?.title }}</h3>
 
-  <p><strong>Fecha:</strong> {{ event.date | date:'mediumDate' }}</p>
-  <p><strong>Capacidad:</strong> {{ event.capacity }}</p>
-  <p><strong>Estado:</strong>
-    <span [ngClass]="getStatusClass(event.status)">
-      {{ getStatusText(event.status) }}
+  <p><strong>Description:</strong> {{ (event$ | async)?.description }}</p>
+  <p><strong>Address:</strong> {{ (event$ | async)?.address }}</p>
+  <p><strong>Date:</strong> {{ (event$ | async)?.date | date:'mediumDate' }}</p>
+  <p><strong>Price:</strong> {{ (event$ | async)?.price | currency }}</p>
+  <p><strong>Capacity:</strong> {{ (event$ | async)?.capacity }}</p>
+
+  <p>
+    <strong>Status:</strong>
+    <span [ngClass]="getStatusClass((event$ | async)?.status ?? 0)">
+      {{ getStatusText((event$ | async)?.status ?? 0) }}
     </span>
   </p>
 
-  <p class="description">{{ event.description }}</p>
+  <img *ngIf="(event$ | async)?.image" [src]="(event$ | async)?.image" alt="Event image" />
 </div>
-
-<ng-template #loading>
-  <p class="loading-message">Cargando detalles del evento...</p>
-</ng-template>
