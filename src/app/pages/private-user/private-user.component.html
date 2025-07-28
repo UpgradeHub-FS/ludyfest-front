@@ -1,3 +1,8 @@
 <!DOCTYPE html>
-<h2>Perfil del usuario</h2>
+<div class="user-profile">
+  <h2>Perfil Privado</h2>
 
+  <p><strong>Nombre:</strong> {{ (user$ | async)?.name }}</p>
+  <p><strong>Email:</strong> {{ (user$ | async)?.email }}</p>
+  <p><strong>Rol:</strong> {{ (user$ | async)?.rol }}</p>
+</div>
