@@ -33,14 +33,14 @@ export class PrivateEventEdit {
   });
 
   async ngOnInit() {
-    /*     try {
-          const response = await this.eventService.getEventById(this.idEvent)
-          this.formulario.patchValue(response);
-    
-        } catch (error) {
-          Swal.fire('Error', 'El evento no existe', 'error')
-          this.router.navigateByUrl('/events/private/admin')
-        } */
+    try {
+      const response = await this.eventService.getEventById(this.idEvent)
+      this.formulario.patchValue(response);
+
+    } catch (error) {
+      Swal.fire('Error', 'El evento no existe', 'error')
+      this.router.navigateByUrl('/events/private/admin')
+    }
   }
   async onSubmit() {
     try {
