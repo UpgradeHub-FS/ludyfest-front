@@ -3,3 +3,10 @@ section {
   margin: 0px auto;
   padding: 40px;
 }
+
+/* Estilo para los párrafos de error */
+.error {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
