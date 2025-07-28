@@ -83,8 +83,9 @@ export class PrivateEventEdit {
       this.formulario.patchValue(response);
 
     } catch (error) {
-      Swal.fire('Error', 'El evento no existe', 'error')
-      /* this.router.navigateByUrl('/events/private/admin') */
+
+      /*       Swal.fire('Error', 'El evento no existe', 'error')
+            this.router.navigateByUrl('/events/private/admin')  */
     }
   }
   async onSubmit() {
