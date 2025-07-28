@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../../services/user.service';
 import Swal from 'sweetalert2';
 import { IUser } from '../../interfaces/IUser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { IUser } from '../../interfaces/IUser';
 })
 export class Login {
   userService = inject(UserService);
+  router = inject(Router)
 
   formulario: FormGroup = new FormGroup({
     email: new FormControl('', [
@@ -37,12 +39,13 @@ export class Login {
       this.guardarUsuarioEnLocalStorage(response.user);
 
       Swal.fire('Éxito', response.message, 'success');
+      this.router.navigate(['/profile']);
     } catch (error: any) {
       Swal.fire('Error', error.error?.detail || 'Error en el login', 'error');
     }
   }
 
-  //  guardar usuario
+  //  Guardar usuario
   private guardarUsuarioEnLocalStorage(user: IUser) {
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
