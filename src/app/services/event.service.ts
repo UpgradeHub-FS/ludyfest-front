@@ -16,11 +16,22 @@ export class EventService {
     );
   }
 
+      getAllHome() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/recently`)
+    );
+  }
+
+
+
   getEventById(id: number) {
     return lastValueFrom(
       this.httpClient.get<IEvent>(`${this.baseUrl}/${id}`)
     );
   }
+
+
+
 
   updateEvent(event_id: number, event: Event) {
     return lastValueFrom(
