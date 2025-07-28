@@ -15,7 +15,7 @@ export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'events', component: PublicEventListComponent },
     { path: 'events/private/admin', component: PrivateEventList },
-    { path: 'events/private/admin/:id', component: PrivateEventEdit },
+    { path: 'events/private/admin/:idEvent', component: PrivateEventEdit },
     { path: 'users/private/admin', component: PrivateUserList },
     { path: 'events/:id', component: EventsComponent },
     { path: 'login', component: Login },

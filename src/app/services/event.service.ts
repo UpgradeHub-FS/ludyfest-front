@@ -16,32 +16,28 @@ export class EventService {
     );
   }
 
-      getAllHome() {
+  getAllHome() {
     return lastValueFrom(
       this.httpClient.get<IEvent[]>(`${this.baseUrl}/recently`)
     );
   }
 
 
-
-  getEventById(id: number) {
+  getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
     return lastValueFrom(
-      this.httpClient.get<IEvent>(`${this.baseUrl}/${id}`)
+      this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
 
-
-
-
-  updateEvent(event_id: number, event: Event) {
+  updateEvent(idEvent: number, event: Event) {
     return lastValueFrom(
-      this.httpClient.put<IEvent>(`${this.baseUrl}/${event_id}`, event)
+      this.httpClient.put<IEvent>(`${this.baseUrl}/${idEvent}`, event)
     );
   }
 
-  deleteEventById(event_id: number) {
+  deleteEventById(idEvent: number) {
     return lastValueFrom(
-      this.httpClient.delete<IEvent>(`${this.baseUrl}/${event_id}`)
+      this.httpClient.delete<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
 }
