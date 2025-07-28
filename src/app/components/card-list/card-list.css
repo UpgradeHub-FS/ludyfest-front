@@ -1,12 +1,9 @@
 .event_section {
   text-align: center;
   gap: 50px;
-  box-shadow: 1px 1px 10px #dadada;
-  background-color: white;
   width: 100%;
   overflow: visible;
   padding: 0px 10px 100px 10px;
-
 }
 
 .title {

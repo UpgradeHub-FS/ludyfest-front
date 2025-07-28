@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<h2>Event Details</h2>
+<section>
+  <h2>Event Details</h2>
 
-<div class="event-card">
-  <h3>{{ (event$ | async)?.title }}</h3>
+  <div class="event-card">
+    <h3>{{ (event$ | async)?.title }}</h3>
 
-  <p><strong>Description:</strong> {{ (event$ | async)?.description }}</p>
-  <p><strong>Address:</strong> {{ (event$ | async)?.address }}</p>
-  <p><strong>Date:</strong> {{ (event$ | async)?.date | date:'mediumDate' }}</p>
-  <p><strong>Price:</strong> {{ (event$ | async)?.price | currency }}</p>
-  <p><strong>Capacity:</strong> {{ (event$ | async)?.capacity }}</p>
+    <p><strong>Description:</strong> {{ (event$ | async)?.description }}</p>
+    <p><strong>Address:</strong> {{ (event$ | async)?.address }}</p>
+    <p><strong>Date:</strong> {{ (event$ | async)?.date | date:'mediumDate' }}</p>
+    <p><strong>Price:</strong> {{ (event$ | async)?.price | currency }}</p>
+    <p><strong>Capacity:</strong> {{ (event$ | async)?.capacity }}</p>
 
-  <p>
-    <strong>Status:</strong>
-    <span [ngClass]="getStatusClass((event$ | async)?.status ?? 0)">
-      {{ getStatusText((event$ | async)?.status ?? 0) }}
-    </span>
-  </p>
+    <p>
+      <strong>Status:</strong>
+      <span [ngClass]="getStatusClass((event$ | async)?.status ?? 0)">
+        {{ getStatusText((event$ | async)?.status ?? 0) }}
+      </span>
+    </p>
 
-  <img *ngIf="(event$ | async)?.image" [src]="(event$ | async)?.image" alt="Event image" />
-</div>
+    <img *ngIf="(event$ | async)?.image" [src]="(event$ | async)?.image" alt="Event image" />
+  </div>
+</section>
