@@ -6,6 +6,8 @@ import { IUserLogin } from '../interfaces/IUserLogin';
 
 
 type LoginResponse = {
+  token?: string,
+  type?: string,
   success: boolean,
   message: string,
   user: IUser
@@ -31,15 +33,15 @@ export class UserService {
     );
   }
 
-    getAll() {
-      return lastValueFrom(
-        this.httpclient.get<IUser[]>('http://localhost:8000/users')
-      );
-    }
+  getAll() {
+    return lastValueFrom(
+      this.httpclient.get<IUser[]>('http://localhost:8000/users')
+    );
+  }
 
-    deleteUserById(user_id: number) {
-        return lastValueFrom(
-          this.httpclient.delete<IUser>(`http://localhost:8000/users/${user_id}`)
-        );
-      }
+  deleteUserById(user_id: number) {
+    return lastValueFrom(
+      this.httpclient.delete<IUser>(`http://localhost:8000/users/${user_id}`)
+    );
+  }
 }
