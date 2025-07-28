@@ -1,5 +1,18 @@
 section {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0px auto;
-  padding: 40px;
+  padding: 30px;
+}
+
+h2 {
+  
+  font-size: 45px;
+  color: var(--color-secundario); 
+   opacity: 0.5; /
+}
+
+
+.btn{
+  background-color: var(--color-principal);
+  color: white;
 }
