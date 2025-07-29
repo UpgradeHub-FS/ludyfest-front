@@ -37,23 +37,23 @@ export class RegisterToEvent implements OnInit {
     }
   }
 
-  async onSubmit() {
-    if (this.formulario.valid) {
-      try {
-        const userId = 1; // ID del usuario
-        const data = {
-          users_id: userId,
-          events_id: this.idEvent
-        };
-
-        await this.eventService.registerToEvent(data);
-        Swal.fire('Registrado', 'Te has inscrito correctamente', 'success');
-        this.router.navigateByUrl('/events');
-      } catch (error: any) {
-        Swal.fire('Error', error.error.detail, 'error');
+  /*   async onSubmit() {
+      if (this.formulario.valid) {
+        try {
+          const userId = 1; // ID del usuario
+          const data = {
+            users_id: userId,
+            events_id: this.idEvent
+          };
+  
+          await this.eventService.registerToEvent(data);
+          Swal.fire('Registrado', 'Te has inscrito correctamente', 'success');
+          this.router.navigateByUrl('/events');
+        } catch (error: any) {
+          Swal.fire('Error', error.error.detail, 'error');
+        }
       }
-    }
-  }
+    } */
 }
 
 /* export class RegisterToEvent {
