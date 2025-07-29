@@ -46,8 +46,8 @@
             </div>
 
             <div class="event-actions">
-                <button class="btn btn-update">Nuevo</button>
-                <button [routerLink]="['/events','private','admin', event.id]"
+                <button [routerLink]="['/events', 'private', 'admin', 'post']" class="btn btn-primary">Nuevo</button>
+                <button [routerLink]="['/events','private','admin','put', event.id]"
                     class="btn btn-update">Actualizar</button>
                 <button class="btn btn-delete" (click)="onClick(event.id)">Borrar</button>
             </div>
