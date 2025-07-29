@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- Título principal de la página -->
 <h2>Events</h2>
 
@@ -39,3 +40,34 @@
     <p>No hay eventos disponibles</p>
   </div>
 }
+=======
+<!-- TÍTULO -->
+<section>
+  <h2>Events</h2>
+
+  <!-- CONTROLES DE BÚSQUEDA -->
+  <div class="controls">
+    <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" />
+    <select>
+      <option value="date">📅 Date</option>
+      <option value="capacity">👤 Capacity</option>
+    </select>
+  </div>
+
+  <!-- LISTADO DE LOS EVENTOS -->
+  <div *ngFor="let event of filteredEvents" class="event-card">
+    <img [src]="event.imageUrl" alt="Imagen del evento" class="event-image" />
+
+    <div class="event-info">
+      <h3>{{ event.name }}</h3>
+      <p>
+        📅 {{ event.date }} &nbsp; &nbsp; 👤 {{ event.capacity }}
+      </p>
+    </div>
+
+    <span class="badge" [ngClass]="event.status.toLowerCase()">
+      {{ event.status }}
+    </span>
+  </div>
+</section>
+>>>>>>> origin/develop

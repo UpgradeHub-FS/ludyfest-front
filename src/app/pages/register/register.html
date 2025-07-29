@@ -1,0 +1,66 @@
+<section>
+  <h2 class="my-5">Registro de usuarios</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Name: </label>
+      <input type="text" class="form-control" formControlName="name" placeholder="Introduce tu nombre">
+      @if(checkError('name', 'required')){
+      <p class="error"> El campo nombre es obligatorio</p>
+
+      }
+      @if(checkError('name', 'minlength')){
+      <p class="error"> El nombre debe tener minimo 3 caracteres</p>
+
+      }
+
+      @if(checkError('name', 'minlength')){
+      <p class="error">
+        {{formulario.get('name')?.getError('minlength').actualLength}} /
+        {{formulario.get('name')?.getError('minlength').requiredLength}}
+      </p>
+      }
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email: </label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Introduce tu email">
+      @if(checkError('email', 'required')){
+      <p class="error">El campo es obligatorio</p>
+      }
+      @if(checkError('email', 'pattern')){
+      <p class="error">El formato del email no es valido</p>
+      }
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password: </label>
+      <input type="password" class="form-control" formControlName="password"
+        placeholder="Necesario 1 mayuscula,numeros y 1 caracter especial">
+      @if (checkError('password', 'required')) {
+      <p class="error">La contraseña es obligatoria</p>
+      }
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Repite Password: </label>
+      <input type="password" class="form-control" formControlName="repite_password" placeholder="Repite tu password">
+    </div>
+
+
+    <div class="mb-3">
+      <label class="form-label">Rol</label>
+      <select class="form-select" formControlName="rol">
+        <option value="">Elige tu rol</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+        <option value="guest">Guest</option>
+      </select>
+    </div>
+
+    <div class="d-grid gap-2">
+      <input type="submit" value="Enviar" class=" btn btn-warning" [disabled]="!formulario.valid">
+
+    </div>
+
+
+
+  </form>
+</section>

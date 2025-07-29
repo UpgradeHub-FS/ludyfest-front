@@ -1,13 +1,13 @@
+<nav [class.fixed]="isFixed" class="main_nav">
+  <div class="container_nav">
+    <figure>
+      <img class="logo" src="/images/logo_ludy.jpg" alt="Logo ludyfest">
+    </figure>
 
-<nav [class.fixed]="isFixed" >
-    <div class="container-nav">
-        <img class="logo" src="/images/logo_ludy.jpg" alt="Logo ludyfest">
-        
-        <ul class="options">
-            <li>Home</li>
-            <li>Events</li>
-            <li>About</li>
-            <li>Contact</li>
-        </ul>
-    </div>
+    <ul class="nav_menu">
+      <li class="nav_item" [routerLink]="['/home']">Home</li>
+      <li class="nav_item" [routerLink]="['/events']">Events</li>
+      <li class="nav_item" [routerLink]="['/login']">Login</li>
+    </ul>
+  </div>
 </nav>
