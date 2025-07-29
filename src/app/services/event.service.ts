@@ -1,3 +1,4 @@
+import { RegisterToEvent } from './../pages/register-to-event/register-to-event';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
@@ -20,6 +21,10 @@ export class EventService {
     return lastValueFrom(
       this.httpClient.get<IEvent[]>(`${this.baseUrl}/recently`)
     );
+  }
+
+  registerToEvent(data: { users_id: number, events_id: number }) {
+    this.httpClient.post<IEvent>(`${this.baseUrl}`, data)
   }
 
 

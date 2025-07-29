@@ -15,7 +15,7 @@ import { RegisterToEvent } from './pages/register-to-event/register-to-event';
 export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'events', component: PublicEventListComponent },
-    { path: 'events/:id', component: EventsComponent },
+    { path: 'events/:idEvent', component: EventsComponent }, //OJO he cambiado 'id' a 'idEvent' !!!!!
     { path: 'events/register/:idEvent', component: RegisterToEvent },
     { path: 'events/private/admin', component: PrivateEventList },
     { path: 'events/private/admin/:idEvent', component: PrivateEventEdit },
