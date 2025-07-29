@@ -16,7 +16,7 @@ export class PrivateEventPost {
 
   formulario: FormGroup = new FormGroup({
     id: new FormControl(null, [
-
+      Validators.required,
     ]),
     title: new FormControl(null, [
       Validators.required,
@@ -63,7 +63,7 @@ export class PrivateEventPost {
 
     ]),
     users_id: new FormControl(null, [
-
+      Validators.required,
     ])
   });
 
