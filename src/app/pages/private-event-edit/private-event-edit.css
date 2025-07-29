@@ -1,26 +1,26 @@
 section {
-    max-width: 1200px;
-    margin: 0px auto;
-    padding: 30px;
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 30px;
 }
 
 /* Estilo para los párrafos de error */
 .error {
-    color: #e74c3c;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
 
 h2 {
 
-    font-size: 45px;
-    color: var(--color-principal);
-    opacity: 0.5;/
+  font-size: 45px;
+  color: var(--color-principal);
+  opacity: 0.5;
 }
 
 
 .btn {
-    background-color: var(--color-principal);
-    color: white;
+  background-color: var(--color-principal);
+  color: white;
 }

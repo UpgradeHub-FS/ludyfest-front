@@ -1,8 +1,8 @@
 // Importaciones necesarias de Angular
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
-import { FormsModule } from '@angular/forms'; 
-import { EventService, Event as AppEvent } from '../../services/event'; 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { EventService, Event as AppEvent } from '../../services/event';
 
 @Component({
   selector: 'app-public-event-list', // Selector para usar en otras plantillas
@@ -17,19 +17,19 @@ export class PublicEventListComponent implements OnInit {
   // Array que almacena todos los eventos obtenidos del backe
   events: AppEvent[] = [];
   // Inyección del servicio de eventos
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService) { }
   async ngOnInit(): Promise<void> {
     try {
       // Llamada al servicio para obtener loseventos
       const response = await this.eventService.getAllEvents();
       // Logs para debugging (útiles durante desarrollo)
-      console.log('Respuesta completa del backend:', response);
+      /* console.log('Respuesta completa del backend:', response);
       if (response && response.length > 0) {
         console.log('Primer evento:', response[0]);
         console.log('Campo image del primer evento:', response[0].image);
-        console.log('URL completa de imagen:', response[0].imageUrl);
-      }
-      
+        console.log('URL completa de imagen:', response[0].image);
+      } */
+
       // asignamos eventos obtenidos al array local
       this.events = response;
     } catch (error) {
@@ -53,10 +53,10 @@ export class PublicEventListComponent implements OnInit {
     );
   }
 
-  // si hay errores de carga de imagen 
+  // si hay errores de carga de imagen
   onImageError(event: any): void {
     console.log('Error cargando imagen:', event.target.src);
-    event.target.src = 'assets/images/default-event.jpg';
+    event.target.src = '/images/default-event.jpg';
   }
 
   // Convertir código numérico de estado a texto legible(no encontraba solucion en esta parte)
