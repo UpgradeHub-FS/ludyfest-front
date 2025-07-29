@@ -1,6 +1,7 @@
 @if (event) {
 <section>
-    <h2 class="my-4">{{ event.title }}</h2>
+    <h2 class="my-5">Registrarse a un evento</h2>
+    <p>{{ event.title }}</p>
     <img [src]="event.image" class="img-fluid mb-3" style="max-height: 300px;" />
 
     <p><strong>Fecha del evento:</strong> {{ event.date | date }}</p>

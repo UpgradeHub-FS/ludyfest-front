@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EventService, Event as AppEvent } from '../../services/event';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-public-event-list', // Selector para usar en otras plantillas
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './public-event-list.component.html',
   styleUrls: ['./public-event-list.component.css']
 })
@@ -15,7 +16,7 @@ export class PublicEventListComponent implements OnInit {
   // Término de búsqueda vinculado al input
   searchTerm = '';
   // Array que almacena todos los eventos obtenidos del backe
-  events: AppEvent[] = [];
+  arrEvents: IEvent[] = []
   // Inyección del servicio de eventos
   constructor(private eventService: EventService) { }
   async ngOnInit(): Promise<void> {
@@ -31,7 +32,7 @@ export class PublicEventListComponent implements OnInit {
       } */
 
       // asignamos eventos obtenidos al array local
-      this.events = response;
+      this.arrEvents = response;
     } catch (error) {
       console.error('Error al cargar eventos:', error);
     }
@@ -54,10 +55,10 @@ export class PublicEventListComponent implements OnInit {
   }
 
   // si hay errores de carga de imagen
-  onImageError(event: any): void {
-    console.log('Error cargando imagen:', event.target.src);
-    event.target.src = '/images/default-event.jpg';
-  }
+  /*   onImageError(event: any): void {
+      console.log('Error cargando imagen:', event.target.src);
+      event.target.src = '/images/default-event.jpg';
+    } */
 
   // Convertir código numérico de estado a texto legible(no encontraba solucion en esta parte)
   getStatusText(status: number): string {
@@ -77,5 +78,8 @@ export class PublicEventListComponent implements OnInit {
       case 3: return 'completed';  // Clase CSS para completados
       default: return 'unknown';   // Clase CSS para desconocidos
     }
+  }
+  onClick(idEvent: number) {
+
   }
 }
