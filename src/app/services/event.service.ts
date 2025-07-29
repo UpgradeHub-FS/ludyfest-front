@@ -1,4 +1,3 @@
-import { RegisterToEvent } from './../pages/register-to-event/register-to-event';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
