@@ -35,8 +35,14 @@ export class Login {
     try {
       const response = await this.userService.login(this.formulario.value);
 
-      // Guardar  en localStorage
+      // Guardar usuario en localStorage
       this.guardarUsuarioEnLocalStorage(response.user);
+
+      // Guardar token en localStorage
+      // Como el token en la LoginResponse es opcional primero hay que comprobar si existe
+      if (response.token) {
+        this.guardarTokenEnLocalStorage(response.token);
+      }
 
       Swal.fire('Éxito', response.message, 'success');
       this.router.navigate(['/profile']);
@@ -48,5 +54,10 @@ export class Login {
   //  Guardar usuario
   private guardarUsuarioEnLocalStorage(user: IUser) {
     localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  // Guardar token
+  private guardarTokenEnLocalStorage(token: string) {
+    localStorage.setItem('token', token);
   }
 }
