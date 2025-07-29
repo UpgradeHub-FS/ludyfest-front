@@ -3,8 +3,9 @@
     <div class="container">
         <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-                <label for="" class="form-label">ID</label>
-                <input type="text" class="form-control" formControlName="id">
+                <label for="disabledTextInput" class="form-label">ID</label>
+                <input type="text" id="disabledTextInput" class="form-control" formControlName="id"
+                    placeholder="Disabled input">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Title</label>
