@@ -12,12 +12,11 @@ export class NavBar implements OnInit {
   // BARRA DE NAVEGACION
   isFixed: boolean = false;
   isLoggedIn: boolean = false; // variable si el user esta logado
-  isAdmin: boolean = false; // si el user tiene el rol admin
+  isAdmin: boolean = false; // si el user tiene el rol de admin
 
   // Inyec de las dependencias
   private router = inject(Router);
 
-  // ngOnInit con sintaxis moderna y async/await
   async ngOnInit(): Promise<void> {
     try {
       // Verificar estado de autenticación al cargar el componente
