@@ -1,3 +1,46 @@
+<<<<<<< HEAD
+<!-- Título principal de la página -->
+<h2>Events</h2>
+
+<!-- CONTROLES DE BÚSQUEDA -->
+<div class="controls">
+  <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" />
+  <!-- el Select para futuros filtros-->
+  <select>
+    <option value="date">📅 Date</option>
+    <option value="capacity">👤 Capacity</option>
+  </select>
+</div>
+
+<!-- LISTADO DE LOS EVENTOS -->
+<!-- Nuevo bucle @for de Angular 17+ que itera sobre filteredEvents -->
+@for (event of filteredEvents; track $index) {
+  <div class="event-card">
+    <!-- Imagen del evento con fallback y manejo de errores -->
+    <img
+      [src]="event.imageUrl || 'assets/images/default-event.jpg'"
+      alt="Imagen del evento"
+      class="event-image"
+      (error)="onImageError($event)"
+    />
+    <div class="event-info">
+      <h3>{{ event.title }}</h3>
+      <p>📅 {{ event.date }} &nbsp; &nbsp; 👤 {{ event.capacity }}</p>
+      <p class="event-description">{{ event.description }}</p>
+      <p class="event-price">${{ event.price }}</p>
+      <p class="event-address">📍 {{ event.address }}</p>
+    </div>
+    <span class="badge" [ngClass]="getStatusClass(event.status)">
+      {{ getStatusText(event.status) }}
+    </span>
+  </div>
+} @empty {
+  <!-- Mensaje cuando no hay eventos en el for-->
+  <div class="no-events">
+    <p>No hay eventos disponibles</p>
+  </div>
+}
+=======
 <!-- TÍTULO -->
 <section>
   <h2>Events</h2>
@@ -27,3 +70,4 @@
     </span>
   </div>
 </section>
+>>>>>>> origin/develop
