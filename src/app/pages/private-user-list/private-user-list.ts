@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-private-user-list',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './private-user-list.html',
   styleUrl: './private-user-list.css'
 })
