@@ -23,16 +23,23 @@ export class EventService {
     );
   }
 
+
+
+  getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
+    return lastValueFrom(
+      this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
+    );
+  }
+
   registerToEvent(body: IRegisterToEvent) {
     return lastValueFrom(
       this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
     );
   }
 
-
-  getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
+  createEvent(newEvent: IEvent) {
     return lastValueFrom(
-      this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
+      this.httpClient.post<IEvent>(`${this.baseUrl}`, newEvent)
     );
   }
 

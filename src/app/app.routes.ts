@@ -17,7 +17,7 @@ export const routes: Routes = [
     { path: 'events', component: PublicEventListComponent },
     { path: 'events/:idEvent', component: EventsComponent }, //OJO he cambiado 'id' a 'idEvent' !!!!!
     { path: 'events/private/admin', component: PrivateEventList },
-    { path: 'events/private/admin/:idEvent', component: PrivateEventEdit },
+    { path: 'events/private/admin/put/:idEvent', component: PrivateEventEdit },
     { path: 'events/private/admin/post', component: PrivateEventPost },
     { path: 'users/private/admin', component: PrivateUserList },
     { path: 'login', component: Login },
