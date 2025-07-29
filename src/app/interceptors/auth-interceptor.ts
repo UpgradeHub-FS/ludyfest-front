@@ -2,11 +2,11 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const token = localStorage.getItem('token_lu');
+  const token = 'bearer ' + localStorage.getItem('token');
   //Si el token existe lo incluimos en las cabeceras de la peticion
-  if(token){
+  if (token) {
     const reqAuth = req.clone({
-      setHeaders:{
+      setHeaders: {
         Authorization: token
       }
     });
