@@ -24,8 +24,10 @@ export class EventService {
     );
   }
 
-  registerToEvent(idEvent: number, body: IRegisterToEvent) {
-    this.httpClient.post<IEvent>(`${this.baseUrl}/${idEvent}`, body)
+  registerToEvent(body: IRegisterToEvent) {
+    return lastValueFrom(
+      this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
+    );
   }
 
 
