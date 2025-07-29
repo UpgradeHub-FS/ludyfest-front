@@ -1,0 +1,70 @@
+@if (event) {
+<section>
+    <h2 class="my-4">{{ event.title }}</h2>
+    <img [src]="event.image" class="img-fluid mb-3" style="max-height: 300px;" />
+
+    <p><strong>Fecha del evento:</strong> {{ event.date | date }}</p>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+            <label class="form-label">Acepta términos</label>
+            <input type="checkbox" formControlName="aceptaTerminos">
+        </div>
+
+        <!--         <div class="mb-3">
+            <label class="form-label">Código Promocional</label>
+            <input type="text" class="form-control" formControlName="codigoPromocional">
+        </div> -->
+
+        <button class="btn btn-primary" type="submit" [disabled]="!formulario.valid">Apúntate!!</button>
+    </form>
+</section>
+} @else {
+<p>Cargando evento...</p>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--         <div class="event-card">
+
+            <img [src]="'public/images/imagen-festival.jpg'" alt="{{ event.title }}" class="event-image" />
+
+            <div class="event-info">
+                <h3>{{ event.title }}</h3>
+
+ -->
+<!-- <section>
+    <h2 class="my-5">Actualizar Evento</h2>
+    <div class="container">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="" class="form-label">Date</label>
+                <input type="date" class="form-control" formControlName="date">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">AceptaTerminos</label>
+                <input type="checkbox" formControlName="aceptaTerminos">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">CodigoPromocional</label>
+                <input type="text" class="form-control" formControlName="codigoPromocional">
+            </div>
+
+            <input type="submit" value="Enviar" class="btn btn-info" [disabled]="!formulario.valid">
+        </form>
+    </div>
+</section> -->
