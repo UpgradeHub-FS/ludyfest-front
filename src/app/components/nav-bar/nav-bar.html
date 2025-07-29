@@ -5,10 +5,20 @@
     </figure>
 
     <ul class="nav_menu">
+      <!-- Botones que siempre se muestran -->
       <li class="nav_item" [routerLink]="['/home']">Home</li>
       <li class="nav_item" [routerLink]="['/events']">Events</li>
-      <li class="nav_item" [routerLink]="['/login']">Login</li>
-      <li class="nav_item" [routerLink]="['/register']">Register</li>
+      
+      <!-- Sintaxis moderna @if: Mostrar Login y Register SOLO si NO está logueado -->
+      @if (!isLoggedIn) {
+        <li class="nav_item" [routerLink]="['/login']">Login</li>
+        <li class="nav_item" [routerLink]="['/register']">Register</li>
+      }
+
+      <!-- Sintaxis moderna @if: Mostrar Logout SOLO si está logueado -->
+      @if (isLoggedIn) {
+        <li class="nav_item" (click)="logout()" style="cursor: pointer;">Logout</li>
+      }
     </ul>
   </div>
 </nav>
