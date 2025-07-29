@@ -33,7 +33,7 @@ export class PrivateEventList {
 
   async ngOnInit() {//al iniciar la pag que me guarde la info en el arrEvents
     const response = await this.eventService.getAll();
-    console.log('Eventos recibidos:', response);
+    /* console.log('Eventos recibidos:', response); */
     this.arrEvents = response;
   }
 

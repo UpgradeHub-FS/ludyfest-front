@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { IEvent } from '../interfaces/IEvents';
+import { IRegisterToEvent } from '../interfaces/IRegisterToEvent';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,10 @@ export class EventService {
     );
   }
 
-  registerToEvent(data: { users_id: number, events_id: number }) {
-    this.httpClient.post<IEvent>(`${this.baseUrl}`, data)
+  registerToEvent(body: IRegisterToEvent) {
+    return lastValueFrom(
+      this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
+    );
   }
 
 
