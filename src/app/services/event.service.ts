@@ -25,7 +25,7 @@ export class EventService {
   }
 
   registerToEvent(idEvent: number, body: IRegisterToEvent) {
-    this.httpClient.post<IEvent>(`${this.baseUrl}`, body)
+    this.httpClient.post<IEvent>(`${this.baseUrl}/${idEvent}`, body)
   }
 
 

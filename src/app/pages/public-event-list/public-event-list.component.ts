@@ -1,3 +1,4 @@
+
 // Importaciones necesarias de Angular
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,27 +17,30 @@ export class PublicEventListComponent implements OnInit {
   // Término de búsqueda vinculado al input
   searchTerm = '';
   // Array que almacena todos los eventos obtenidos del backe
-  arrEvents: IEvent[] = []
+  events: AppEvent[] = [];
   // Inyección del servicio de eventos
   constructor(private eventService: EventService) { }
-  async ngOnInit(): Promise<void> {
-    try {
-      // Llamada al servicio para obtener loseventos
-      const response = await this.eventService.getAllEvents();
-      // Logs para debugging (útiles durante desarrollo)
-      /* console.log('Respuesta completa del backend:', response);
-      if (response && response.length > 0) {
-        console.log('Primer evento:', response[0]);
-        console.log('Campo image del primer evento:', response[0].image);
-        console.log('URL completa de imagen:', response[0].image);
-      } */
+  async ngOnInit() {
 
-      // asignamos eventos obtenidos al array local
-      this.arrEvents = response;
-    } catch (error) {
-      console.error('Error al cargar eventos:', error);
-    }
   }
+  /*   async ngOnInit(): Promise<void> {
+      try {
+        // Llamada al servicio para obtener loseventos
+        const response = await this.eventService.getAllEvents();
+        // Logs para debugging (útiles durante desarrollo)
+        /* console.log('Respuesta completa del backend:', response);
+        if (response && response.length > 0) {
+          console.log('Primer evento:', response[0]);
+          console.log('Campo image del primer evento:', response[0].image);
+          console.log('URL completa de imagen:', response[0].image);
+        } */
+
+  // asignamos eventos obtenidos al array local
+  /*this.events = response;
+} catch (error) {
+  console.error('Error al cargar eventos:', error);
+}
+} */
 
   // Getter que filtra eventos basado en la búsqueda
   get filteredEvents(): AppEvent[] {
@@ -80,6 +84,7 @@ export class PublicEventListComponent implements OnInit {
     }
   }
   onClick(idEvent: number) {
+    /* const response = await this.eventService.registerToEvent(); */
 
   }
 }
