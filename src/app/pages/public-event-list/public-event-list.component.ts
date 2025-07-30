@@ -15,7 +15,7 @@ import { IEvent } from '../../interfaces/IEvents';
   templateUrl: './public-event-list.component.html',
   styleUrls: ['./public-event-list.component.css']
 })
-export class PublicEventListComponent implements OnInit {
+export class PublicEventListComponen  implements OnInit {
   sortOption = '';
   selectedCategory = '';
   categories: { [key: number]: string } = {
