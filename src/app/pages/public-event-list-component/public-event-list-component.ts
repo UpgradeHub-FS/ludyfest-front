@@ -78,6 +78,7 @@ export class PublicEventListComponent {
   }
 
 
+
   async onClick(idEvent: number) {
 
     const body = {
