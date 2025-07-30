@@ -54,4 +54,10 @@ export class EventService {
       this.httpClient.delete<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
+  getRegisteredEventsByUserId(userId: number) {
+  return lastValueFrom(
+    this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
+  );
+}
+
 }

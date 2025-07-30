@@ -1,26 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { EventService } from '../../services/event.service';
+import { UserService } from '../../services/user.service';
+import { IEvent } from '../../interfaces/IEvents';
 import { IUser } from '../../interfaces/IUser';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-private-user',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './private-user.component.html',
   styleUrls: ['./private-user.component.css']
 })
 export class PrivateUserComponent implements OnInit {
-  public user$: Observable<IUser | null> = of(null);
+  public user!: IUser;
+  public events: IEvent[] = [];
+  public noEvents: boolean = false; // bandera para controlar mensaje sin *ngIf
 
-  ngOnInit(): void {
-    const userString = localStorage.getItem('currentUser');
-    if (userString) {
-      const user = JSON.parse(userString) as IUser;
-      this.user$ = of(user);
-    } else {
-      console.warn('No hay usuario');
-      this.user$ = of(null);
+  constructor(
+    private eventService: EventService,
+    private userService: UserService
+  ) {}
+
+  async ngOnInit(): Promise<void> {
+    try {
+      this.user = await this.userService.getProfile();
+
+      const allEvents = await this.eventService.getAll();
+
+      this.events = allEvents.filter(event => event.users_id === this.user.id);
+
+      // Si no hay eventos, activamos bandera para mostrar mensaje
+      this.noEvents = this.events.length === 0;
+
+    } catch (error) {
+      console.error('Error al cargar perfil y eventos:', error);
+      this.noEvents = true; // si falla, asumimos que no hay eventos
     }
   }
 }
