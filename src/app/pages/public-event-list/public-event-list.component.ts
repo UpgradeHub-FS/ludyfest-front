@@ -3,10 +3,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { EventService, Event as AppEvent } from '../../services/event';
 import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { IEvent } from '../../interfaces/IEvents';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-public-event-list', // Selector para usar en otras plantillas
@@ -15,7 +15,7 @@ import { IEvent } from '../../interfaces/IEvents';
   templateUrl: './public-event-list.component.html',
   styleUrls: ['./public-event-list.component.css']
 })
-export class PublicEventListComponent implements OnInit {
+export class PublicEventListComponen  implements OnInit {
   sortOption = '';
   selectedCategory = '';
   categories: { [key: number]: string } = {
@@ -29,7 +29,7 @@ export class PublicEventListComponent implements OnInit {
   // Término de búsqueda vinculado al input
   searchTerm = '';
   // Array que almacena todos los eventos obtenidos del backe
-  events: AppEvent[] = [];
+  events: IEvent[] = [];
 
 
 
@@ -38,7 +38,7 @@ export class PublicEventListComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       // Llamada al servicio para obtener loseventos
-      const response = await this.eventService.getAllEvents();
+      const response = await this.eventService.getAll();
       // Logs para debugging (útiles durante desarrollo)
       /* console.log('Respuesta completa del backend:', response);
       if (response && response.length > 0) {
@@ -58,7 +58,7 @@ export class PublicEventListComponent implements OnInit {
   onChange(event: any) {
     this.selectedCategory = event.target.value;
   }
-  get filteredEvents(): AppEvent[] {
+  get filteredEvents(): IEvent[] {
     let filtered = [...this.events];
 
     // Filtro por categoría
@@ -134,17 +134,15 @@ export class PublicEventListComponent implements OnInit {
 
 
   async onClick(idEvent: number) {
-    const userId = 3;
 
     const body = {
-      users_id: userId,
-      events_id: idEvent
+      event_id: idEvent
     };
     try {
-      const response = await this.eventService.registerToEvent();
+      const response = await this.eventService.registerUserToEvent(body);
       await Swal.fire({
         title: 'Exito',
-        text: 'Evento actualizado correctamente',
+        text: 'Ya estás apuntado al evento. Te esperamos!',
         icon: 'success'
       });
       /* this.router.navigateByUrl('/events'); */

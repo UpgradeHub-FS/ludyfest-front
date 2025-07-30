@@ -48,7 +48,7 @@ export class UserService {
 
 
   isLogged() {
-    const token = localStorage.getItem('token_lu')
+    const token = localStorage.getItem('token')
     if (!token) {
       return false
     }
@@ -72,4 +72,5 @@ export class UserService {
       this.httpclient.put<IUpdateUserResponse>(`http://localhost:8000/users`, body)
     );
   }
+
 }
