@@ -72,4 +72,5 @@ export class UserService {
       this.httpclient.put<IUpdateUserResponse>(`http://localhost:8000/users`, body)
     );
   }
+
 }
