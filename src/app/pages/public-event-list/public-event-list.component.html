@@ -1,37 +1,55 @@
 <!-- Título principal de la página -->
-<h2>Events</h2>
 
 <!-- CONTROLES DE BÚSQUEDA -->
-<div class="controls">
-  <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" />
-  <!-- el Select para futuros filtros-->
-  <select>
-    <option value="date">📅 Date</option>
-    <option value="capacity">👤 Capacity</option>
-  </select>
-</div>
-
-<!-- LISTADO DE LOS EVENTOS -->
-<!-- Nuevo bucle @for de Angular 17+ que itera sobre filteredEvents -->
-@for (event of filteredEvents; track $index) {
-<div class="event-card">
-  <!-- Imagen del evento con fallback y manejo de errores -->
-  <img [src]="event.image || '/images/default-event.jpg'" alt="Imagen del evento" class="event-image"
-    (error)="onImageError($event)" />
-  <div class="event-info">
-    <h3>{{ event.title }}</h3>
-    <p>📅 {{ event.date }} &nbsp; &nbsp; 👤 {{ event.capacity }}</p>
-    <p class="event-description">{{ event.description }}</p>
-    <p class="event-price">${{ event.price }}</p>
-    <p class="event-address">📍 {{ event.address }}</p>
+<div class="container">
+  <h2 class="title">Events</h2>
+  <!-- selector categorías -->
+  <div class="controls">
+    <select (change)="onChange($event)" class="form-select">
+      <option value=""> Elige categoría</option>
+      <option value="Conciertos"> Conciertos</option>
+      <option value="Parties"> Parties</option>
+      <option value="Experiencias"> Experiencias</option>
+      <option value="Torneos"> Torneos</option>
+      <option value="Cultura"> Cultura</option>
+      <option value="Cine"> Cine</option>
+    </select>
+    <input type="text" placeholder="🔎Buscar..." [(ngModel)]="searchTerm" />
+    <!-- ordenar por-->
+    <select [(ngModel)]="sortOption" class="form-select">
+      <option value="">Ordenar por...</option>
+      <option value="az">▶ A-Z</option>
+      <option value="za">◀ Z-A</option>
+      <option value="date">📅 Fecha</option>
+    </select>
   </div>
-  <span class="badge" [ngClass]="getStatusClass(event.status)">
-    {{ getStatusText(event.status) }}
-  </span>
-</div>
-} @empty {
-<!-- Mensaje cuando no hay eventos en el for-->
-<div class="no-events">
-  <p>No hay eventos disponibles</p>
-</div>
-}
+
+  <!-- LISTADO DE LOS EVENTOS -->
+  <!-- Nuevo bucle @for de Angular 17+ que itera sobre filteredEvents -->
+  @for (event of filteredEvents; track $index) {
+  <div class="event-card">
+    <!-- Imagen del evento con fallback y manejo de errores -->
+    <img [src]="'public/images/imagen-festival.jpg'" alt="{{ event.title }}" class="event-image" />
+    <!-- <img [src]="event.image || '/images/default-event.jpg'" alt="Imagen del evento" class="event-image"
+    (error)="onImageError($event)" /> -->
+    <div class="event-info">
+      <h3>{{ event.title }}</h3>
+      <p>📅 {{ event.date }} &nbsp; &nbsp; 👤 {{ event.capacity }}</p>
+      <p class="event-description">{{ event.description }}</p>
+      <p class="event-price">${{ event.price }}</p>
+      <p class="event-address">📍 {{ event.address }}</p>
+    </div>
+    <span class="badge" [ngClass]="getStatusClass(event.status)">
+      {{ getStatusText(event.status) }}
+    </span>
+    <div class="event-actions">
+      <button class="btn btn-primary" (click)="onClick(event.id)">Apuntarse</button>
+      <button [routerLink]="['/events', event.id]" class="btn btn-info">Ver Evento</button>
+    </div>
+  </div>
+  } @empty {
+  <!-- Mensaje cuando no hay eventos en el for-->
+  <div class="no-events">
+    <p>No hay eventos disponibles</p>
+  </div>
+  }

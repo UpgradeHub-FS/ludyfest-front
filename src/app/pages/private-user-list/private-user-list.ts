@@ -8,18 +8,18 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-private-user-list',
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './private-user-list.html',
   styleUrl: './private-user-list.css'
 })
 export class PrivateUserList {
 
-    searchTerm = '';
-    arrEvents: IUser[] = []
-    sortOption = '';
-    
+  searchTerm = '';
+  arrEvents: IUser[] = []
+  sortOption = '';
 
-    userService = inject(UserService);
+
+  userService = inject(UserService);
 
   async ngOnInit() {//al iniciar la pag que me guarde la info en el arrUsers
     const response = await this.userService.getAll();
@@ -29,8 +29,8 @@ export class PrivateUserList {
 
 
 
-    get filteredUsers() {
-      let filtered = this.arrEvents;
+  get filteredUsers() {
+    let filtered = this.arrEvents;
 
 
 
@@ -52,27 +52,27 @@ export class PrivateUserList {
 
 
   async onClick(user_id: number) {
-      try {
-        const result = await Swal.fire({
-          title: "Borrar",
-          text: "No podrás revertirlo!!",
-          icon: "warning",
-          showCancelButton: true,
-          /*         confirmButtonColor: "#3085d6",
-                  cancelButtonColor: "#d33",
-                  confirmButtonText: "Yes, delete it!" */
-        })
-  
-        if (result.isConfirmed) {
-          await this.userService.deleteUserById(user_id);
-          Swal.fire('Éxito', 'Se ha borrado el evento', 'success');
-  
-          const response = await this.userService.getAll();
-          this.arrEvents = response;
-        }
-      } catch (error) {
-        Swal.fire('Error', 'El usuario no existe. Revisa', 'error');
+    try {
+      const result = await Swal.fire({
+        title: "Borrar",
+        text: "No podrás revertirlo!!",
+        icon: "warning",
+        showCancelButton: true,
+        /*         confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!" */
+      })
+
+      if (result.isConfirmed) {
+        await this.userService.deleteUserById(user_id);
+        Swal.fire('Éxito', 'Se ha borrado el evento', 'success');
+
+        const response = await this.userService.getAll();
+        this.arrEvents = response;
       }
+    } catch (error) {
+      Swal.fire('Error', 'El usuario no existe. Revisa', 'error');
     }
+  }
 
 }

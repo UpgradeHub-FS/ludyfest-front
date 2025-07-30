@@ -6,6 +6,8 @@
     font-family: var(--fuente-principal);
 }
 
+
+
 /* CONTENEDOR GENERAL */
 .container {
     max-width: 1200px;
@@ -57,6 +59,12 @@
     color: #6a1b9a;
 }
 
+.event-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+}
+
 /*ELEGIR CATEGORIA  */
 .controls {
     display: flex;
@@ -81,8 +89,8 @@ select {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    background-color: var(--color-blanco-ludy);
-    border: 1px solid #eee;
+    background-color: white;
+    border: 1px solid #ffffff;
     border-radius: 12px;
     padding: 12px;
     margin-bottom: 12px;
@@ -92,7 +100,7 @@ select {
 }
 
 .event-card:hover {
-    background-color: #fdfdfd;
+    background-color: #f9f9f9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -109,23 +117,21 @@ select {
 
 /* INFORMACIÓN EVENTO */
 .event-info {
-    flex: 1;
-    min-width: 200px;
+    flex-grow: 1;
 }
 
 .event-info h3 {
+    margin: 0;
     font-size: 18px;
-    font-weight: 700;
-    color: var(--color-secundario);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-weight: 600;
+    color: #5A2DA4;
 }
 
 .event-info p {
     margin: 4px 0 0;
     font-size: 14px;
     color: #666;
+    /* color suave para la fecha */
 }
 
 /* ESTADO DEL EVENTO */
@@ -159,6 +165,16 @@ select {
     letter-spacing: 0.5px;
 }
 
+.btn-primary {
+    background-color: #00d0ff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #03b5dc;
+    transform: scale(1.05);
+}
+
 .btn-update {
     background-color: #7132d5;
     color: white;
@@ -170,7 +186,7 @@ select {
 }
 
 .btn-delete {
-    background-color: #ec3346;
+    background-color: #ef152b;
     color: white;
 }
 
@@ -179,11 +195,14 @@ select {
     transform: scale(1.05);
 }
 
+
 /* BOTONES CONTENEDOR */
 .event-actions {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     margin-top: 10px;
+    margin-right: 20px;
 }
 
 /* RESPONSIVE */
