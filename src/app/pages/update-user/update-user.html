@@ -1,1 +1,47 @@
-<p>update-user works!</p>
+<section>
+    <h2 class="my-5">Actualizar perfil</h2>
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input type="text" class="form-control" formControlName="name">
+            @if (checkError('name', 'required')) {
+            <p class="error">El nombre es obligatorio</p>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email">
+            @if (checkError('email', 'required')) {
+            <p class="error">El email es obligatorio</p>
+            }
+            @if (checkError('email', 'pattern')) {
+            <p class="error">El formato del email no es válido</p>
+            }
+        </div>
+
+        <!-- <div class="mb-3">
+            <label>Contraseña</label>
+            <input type="password" class="form-control" formControlName="password">
+            @if (checkError('password', 'required')) {
+            <p class="error">La contraseña es obligatoria</p>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label>Rol</label>
+            <select class="form-control" formControlName="rol">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="guest">Guest</option>
+            </select>
+            @if (checkError('rol', 'required')) {
+            <p class="error">El rol es obligatorio</p>
+            }
+        </div> -->
+
+        <input type="submit" value="Actualizar" class="mt-3" [disabled]="formulario.invalid">
+
+    </form>
+</section>

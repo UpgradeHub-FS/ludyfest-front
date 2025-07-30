@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class Login {
   userService = inject(UserService);
-  router = inject(Router)
+  router = inject(Router);
 
   formulario: FormGroup = new FormGroup({
     email: new FormControl('', [

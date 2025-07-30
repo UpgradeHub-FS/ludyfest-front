@@ -55,9 +55,21 @@ export class UserService {
     return true
   }
 
-  updateUser(user_id: number, body: IUser) {
+  getById(user_id: number) {
     return lastValueFrom(
-      this.httpclient.put<IUpdateUserResponse>(`http://localhost:8000/users/${user_id}`, body)
+      this.httpclient.get<IUser>(`http://localhost:8000/users/${user_id}`)
+    );
+  }
+
+  getProfile() {
+    return lastValueFrom(
+      this.httpclient.get<IUser>(`http://localhost:8000/users/profile`)
+    );
+  }
+
+  updateUser(body: IUser) {
+    return lastValueFrom(
+      this.httpclient.put<IUpdateUserResponse>(`http://localhost:8000/users`, body)
     );
   }
 }

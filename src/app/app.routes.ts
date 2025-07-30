@@ -24,7 +24,7 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'register', component: Register },
     { path: 'profile', component: PrivateUserComponent },
-    { path: 'update-user/:id', component: UpdateUser },
+    { path: 'update-user', component: UpdateUser },
     { path: '**', redirectTo: 'home' } //si no encuentra la pag que vaya al home
 ];
 
