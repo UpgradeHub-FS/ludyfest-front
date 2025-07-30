@@ -54,7 +54,10 @@
                 <p>💶 {{ event.price }}€</p>
 
             </div>
-
+            <div class="event-actions">
+                <button class="btn btn-primary" (click)="onClick(event.id)">Apuntarse</button>
+                <button [routerLink]="['/events', event.id]" class="btn btn-info">Ver Evento</button>
+            </div>
         </div>
         }
     </section>

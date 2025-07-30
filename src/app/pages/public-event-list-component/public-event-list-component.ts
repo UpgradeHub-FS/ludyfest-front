@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-public-event-list-component',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './public-event-list-component.html',
   styleUrl: './public-event-list-component.css'
 })
@@ -72,13 +72,29 @@ export class PublicEventListComponent {
   async onChangeAforo(event: any) {
     console.log(event.target.value);
     this.selectedCategory = event.target.value;
-    
+
 
 
   }
 
 
+  async onClick(idEvent: number) {
 
+    const body = {
+      event_id: idEvent
+    };
+    try {
+      const response = await this.eventService.registerUserToEvent(body);
+      await Swal.fire({
+        title: 'Exito',
+        text: 'Ya estás apuntado al evento. Te esperamos!',
+        icon: 'success'
+      });
+      /* this.router.navigateByUrl('/events'); */
+    } catch (error) {
+      Swal.fire('Error', 'No se ha podido registrar al evento', 'error');
+    }
+  }
 
 
 
