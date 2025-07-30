@@ -1,22 +1,67 @@
 <section>
-  <h2>Event Details</h2>
+  <h2 class="my-5">Editar Evento</h2>
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
-  <div class="event-card">
-    <h3>{{ (event$ | async)?.title }}</h3>
+    <div class="mb-3">
+      <label class="form-label">Título</label>
+      <input type="text" class="form-control" formControlName="title" placeholder="Título del evento" />
+    </div>
 
-    <p><strong>Description:</strong> {{ (event$ | async)?.description }}</p>
-    <p><strong>Address:</strong> {{ (event$ | async)?.address }}</p>
-    <p><strong>Date:</strong> {{ (event$ | async)?.date | date:'mediumDate' }}</p>
-    <p><strong>Price:</strong> {{ (event$ | async)?.price | currency }}</p>
-    <p><strong>Capacity:</strong> {{ (event$ | async)?.capacity }}</p>
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-control" rows="3" formControlName="description" placeholder="Descripción"></textarea>
+    </div>
 
-    <p>
-      <strong>Status:</strong>
-      <span [ngClass]="getStatusClass((event$ | async)?.status ?? 0)">
-        {{ getStatusText((event$ | async)?.status ?? 0) }}
-      </span>
-    </p>
+    <div class="mb-3">
+      <label class="form-label">Fecha</label>
+      <input type="date" class="form-control" formControlName="date" />
+    </div>
 
-    <img *ngIf="(event$ | async)?.image" [src]="(event$ | async)?.image" alt="Event image" />
-  </div>
+    <div class="mb-3">
+      <label class="form-label">Precio</label>
+      <input type="number" class="form-control" formControlName="price" placeholder="Precio en €" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Capacidad</label>
+      <input type="number" class="form-control" formControlName="capacity" placeholder="Cantidad de personas" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Dirección</label>
+      <input type="text" class="form-control" formControlName="address" placeholder="Dirección del evento" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Latitud</label>
+      <input type="text" class="form-control" formControlName="latitude" placeholder="Latitud" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Longitud</label>
+      <input type="text" class="form-control" formControlName="longitude" placeholder="Longitud" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Imagen (URL)</label>
+      <input type="text" class="form-control" formControlName="image" placeholder="URL de la imagen" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Estado</label>
+      <input type="number" class="form-control" formControlName="status" placeholder="Estado (1=Activo, 2=Cancelado)" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">ID Categoría</label>
+      <input type="number" class="form-control" formControlName="categories_id" placeholder="Categoría (número)" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">ID Usuario</label>
+      <input type="number" class="form-control" formControlName="users_id" placeholder="ID del usuario" />
+    </div>
+
+    <button type="submit" class="btn btn-info">Actualizar Evento</button>
+  </form>
 </section>
