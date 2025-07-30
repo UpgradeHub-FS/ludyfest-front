@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { IEvent } from '../interfaces/IEvents';
 import { IRegisterToEvent } from '../interfaces/IRegisterToEvent';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +32,6 @@ export class EventService {
     );
   }
 
-  
   registerToEvent(body: IRegisterToEvent) {
     return lastValueFrom(
       this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
@@ -60,6 +60,9 @@ export class EventService {
     return lastValueFrom(
       this.httpClient.get<IEvent[]>(`${this.baseUrl}/capacity/${min_capacity}/${max_capacity}`
       )
-    )
+    );
+
   }
+
+
 }
