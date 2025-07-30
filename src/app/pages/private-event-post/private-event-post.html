@@ -1,15 +1,7 @@
 <section>
-    <h2 class="my-5">Actualizar Evento</h2>
+    <h2 class="my-5">Crear Evento</h2>
     <div class="container">
         <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-
-            <fieldset disabled>
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">ID</label>
-                    <input type="text" id="disabledTextInput" class="form-control" formControlName="id"
-                        placeholder="Disabled input">
-                </div>
-            </fieldset>
             <div class="mb-3">
                 <label for="" class="form-label">Título</label>
                 <input type="text" class="form-control" formControlName="title">
@@ -68,6 +60,10 @@
                     <option value=5>Cultura</option>
                     <option value=6>Cine</option>
                 </select>
+                <div class="mb-3">
+                    <label for="" class="form-label">IDUsuario</label>
+                    <input type="text" class="form-control" formControlName="users_id">
+                </div>
             </div>
             <input type="submit" value="Enviar" class="btn btn-info">
         </form>

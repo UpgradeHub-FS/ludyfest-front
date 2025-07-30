@@ -1,8 +1,8 @@
-import { RegisterToEvent } from './../pages/register-to-event/register-to-event';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { IEvent } from '../interfaces/IEvents';
+import { IRegisterToEvent } from '../interfaces/IRegisterToEvent';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +23,23 @@ export class EventService {
     );
   }
 
-  registerToEvent(data: { users_id: number, events_id: number }) {
-    this.httpClient.post<IEvent>(`${this.baseUrl}`, data)
-  }
 
 
   getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
     return lastValueFrom(
       this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
+    );
+  }
+
+  registerToEvent(body: IRegisterToEvent) {
+    return lastValueFrom(
+      this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
+    );
+  }
+
+  createEvent(newEvent: IEvent) {
+    return lastValueFrom(
+      this.httpClient.post<IEvent>(`${this.baseUrl}`, newEvent)
     );
   }
 
