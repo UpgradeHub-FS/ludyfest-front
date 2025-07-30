@@ -48,7 +48,7 @@ export class UserService {
 
 
   isLogged() {
-    const token = localStorage.getItem('token_lu')
+    const token = localStorage.getItem('token')
     if (!token) {
       return false
     }
