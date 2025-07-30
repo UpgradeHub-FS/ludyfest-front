@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { IEvent } from '../interfaces/IEvents';
 import { IRegisterToEvent } from '../interfaces/IRegisterToEvent';
+import { IRegisterEventSubscribe } from '../interfaces/IRegisterEventSubscribe';
+import { IRegisterResponse } from '../interfaces/IRegisterResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +54,12 @@ export class EventService {
   deleteEventById(idEvent: number) {
     return lastValueFrom(
       this.httpClient.delete<IEvent>(`${this.baseUrl}/${idEvent}`)
+    );
+  }
+
+  registerUserToEvent(body: IRegisterEventSubscribe) {
+    return lastValueFrom(
+      this.httpClient.post<IRegisterResponse>('http://localhost:8000/events/register/register-event', body)
     );
   }
 }
