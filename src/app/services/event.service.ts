@@ -59,7 +59,7 @@ export class EventService {
 
   registerUserToEvent(body: IRegisterEventSubscribe) {
     return lastValueFrom(
-      this.httpClient.post<IRegisterResponse>('http://localhost:8000/events/register/register-event', body)
+      this.httpClient.post<IRegisterResponse>(`${this.baseUrl}/register/register-event`, body)
     );
   }
 }
