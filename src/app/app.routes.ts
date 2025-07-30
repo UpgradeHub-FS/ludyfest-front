@@ -10,6 +10,7 @@ import { PrivateUserComponent } from './pages/private-user/private-user.componen
 import { PrivateUserList } from './pages/private-user-list/private-user-list';
 import { PrivateEventEdit } from './pages/private-event-edit/private-event-edit';
 import { PrivateEventPost } from './pages/private-event-post/private-event-post';
+import { UpdateUser } from './pages/update-user/update-user';
 
 
 export const routes: Routes = [
@@ -23,6 +24,7 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'register', component: Register },
     { path: 'profile', component: PrivateUserComponent },
+    { path: 'update-user', component: UpdateUser },
     { path: '**', redirectTo: 'home' } //si no encuentra la pag que vaya al home
 ];
 
