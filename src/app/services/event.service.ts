@@ -54,4 +54,11 @@ export class EventService {
       this.httpClient.delete<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
+
+  filterByCapacity(min_capacity: number, max_capacity: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/capacity/${min_capacity}/${max_capacity}`
+      )
+    )
+  }
 }
