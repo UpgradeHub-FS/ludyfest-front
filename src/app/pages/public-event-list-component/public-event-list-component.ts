@@ -1,10 +1,20 @@
-import { EventService } from './../../services/event.service';
-import { IEvent } from './../../interfaces/IEvents';
-import { Component, OnInit, inject, numberAttribute } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { IEvent } from '../../interfaces/IEvents';
+import { EventService } from '../../services/event.service';
+
+// import { EventService } from './../../services/event.service';
+// import { IEvent } from './../../interfaces/IEvents';
+// import { Component, OnInit, inject, numberAttribute } from '@angular/core';
+// import { RouterLink } from '@angular/router';
+// import { CommonModule } from '@angular/common';
+// import { FormsModule } from '@angular/forms';
+// import Swal from 'sweetalert2';
+
+
 
 @Component({
   selector: 'app-public-event-list-component',
