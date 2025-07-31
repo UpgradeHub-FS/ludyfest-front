@@ -1,17 +1,19 @@
 <div class="container">
-    <h2 class="title">Events</h2>
+    <div class="LogoYBuscador">
+        <h2 class="title">Events</h2>
+        <div>
+            <input class="BuscadorTexto" type="text" placeholder="Buscar..." [(ngModel)]="textEvent" />
+                 &nbsp;
+            <button class="botonBuscarTexto" (click)="getEventTitle()">Buscar</button>
+        </div>
+
+    </div>
+
+
     <section class="my-3">
 
-
         <div class="filterBar">
-
-            <!-- FILTRAR POR TEXTO -->
-            <div class="filterEvent">
-                <input type="text" placeholder="Buscar..." [(ngModel)]="textEvent" />
-                <button (click)="getEventTitle()">Buscar</button>
-            </div>
             <!-- FILTRAR POR CATEGORIA -->
-
             <div class="filterBar">
                 <select (change)="onChangeCategories($event)" class="form-select filterEvent">
                     <option value=>Categoria</option>
@@ -34,26 +36,34 @@
                 </select>
 
 
+                <!-- FILTRAR POR RANGO DE PRECIO -->
+                <div class="filterEvent">
+                    <label class="contadorPrecio" for="customRange1">PRECIO: {{ priceValue }} € &nbsp; </label>
+                    <input type="range" class="custom-range" id="customRange1" min=0 max=500
+                        (change)="onChangePrice($event)" [(ngModel)]="priceValue">
+                </div>
 
 
 
                 <!-- FILTRAR POR FECHA -->
-                <div class="filterEvent">
-                    <label>Inicio:</label>
-                    <input type="date" [(ngModel)]="dateInit" name="fechaInicio">
-                    <label>Finalización:</label>
-                    <input type="date" [(ngModel)]="dateEnd" name="fechaFin">
 
-                    <button (click)="filterByDate()">Filtrar</button>
+
+                <div class="filterEvent barraDate">
+                    <p>Fecha de</p>
+                    <div class="filterEvent">
+                        <input class="dateBar" type="date" [(ngModel)]="dateInit" name="fechaInicio">
+                    </div>
+                    <p>a</p>
+                    <div class="filterEvent">
+                        <input class="dateBar" type="date" [(ngModel)]="dateEnd" name="fechaFin">
+                    </div>
+                    &nbsp;
+                    <button class="dateButoon" (click)="filterByDate()">Filtrar</button>
+
+
+
                 </div>
 
-
-                <!-- FILTRAR POR RANGO DE PRECIO -->
-                <div class="filterEvent">
-                    <label for="customRange1">PRECIO: {{ priceValue }} €</label>
-                    <input type="range" class="custom-range" id="customRange1" min=0 max=500
-                        (change)="onChangePrice($event)" [(ngModel)]="priceValue">
-                </div>
 
             </div>
 
@@ -71,7 +81,7 @@
         @for (event of arrEvents; track event.id) {
         <div class="event-card">
             <figure class="event-image">
-                <img [src]="event.image" alt="{{ event.image }}" />
+                <img  alt="{{ event.image }}" />
             </figure>
 
             <div class="event-info">

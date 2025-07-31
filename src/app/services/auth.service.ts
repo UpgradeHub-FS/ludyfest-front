@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 
+
+
 interface TokenPayload {
   expire: number;
   rol?: string;
