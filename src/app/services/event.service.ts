@@ -99,6 +99,7 @@ export class EventService {
     );
   }
 
+
   // FILTRAR POR CAPACIDAD
   filterByDate(start_date: string, end_date: string) {
     return lastValueFrom(
