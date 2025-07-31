@@ -18,6 +18,9 @@ type LoginResponse = {
   providedIn: 'root'
 })
 export class UserService {
+  getCurrentUser() {
+    throw new Error('Method not implemented.');
+  }
 
   private httpclient = inject(HttpClient);
   private baseUrl: string = 'http://localhost:8000/auth';

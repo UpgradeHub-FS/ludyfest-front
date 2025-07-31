@@ -11,6 +11,9 @@ interface TokenPayload {
   providedIn: 'root'
 })
 export class AuthService {
+  forceLogout() {
+    throw new Error('Method not implemented.');
+  }
   private readonly tokenKey = 'token';
 
   getToken(): string | null {
