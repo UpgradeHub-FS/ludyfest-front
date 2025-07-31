@@ -45,6 +45,17 @@ button {
     margin: 5px;
 }
 
+.btn-delete {
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #934497;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(166, 1, 175, 0.786);
+}
+
 button:hover {
     box-shadow: 0 4px 12px rgb(255, 123, 0);
     background-color: rgb(255, 123, 0);
