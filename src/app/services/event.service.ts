@@ -25,6 +25,11 @@ export class EventService {
     );
   }
 
+  getMyEvent() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/my-events`)
+    )
+  }
 
 
   getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
@@ -32,10 +37,17 @@ export class EventService {
       this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
-
-  registerToEvent(id: number, eventId: number, body: IRegisterToEvent) {
+  // REGISTRARSE A UN EVENTO
+  registerToEvent(body: IRegisterToEvent) {
     return lastValueFrom(
       this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
+    );
+  }
+  // CREAR EVENTO
+
+  deleteRegisterToEvent(idEvent: number) {
+    return lastValueFrom(
+      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register${idEvent}`)
     );
   }
 
@@ -51,26 +63,66 @@ export class EventService {
     );
   }
 
+  // BORRAR POR ID
   deleteEventById(idEvent: number) {
     return lastValueFrom(
       this.httpClient.delete<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
   getRegisteredEventsByUserId(userId: number) {
-  return lastValueFrom(
-    this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
-  );
-}
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
+    );
+  }
 
 
+
+  // FILTRAR POR CAPACIDAD
   filterByCapacity(min_capacity: number, max_capacity: number) {
     return lastValueFrom(
       this.httpClient.get<IEvent[]>(`${this.baseUrl}/capacity/${min_capacity}/${max_capacity}`
-      )
+      ));
+  }
+
+
+  // FILTRAR POR PRECIO
+  filterByPrice(min_price: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/price/${min_price}`));
+  }
+
+
+  // FILTRAR POR CATEGORIA
+  get_event_by_category(category: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/category/${category}`)
     );
+  }
 
-}
+<<<<<<< HEAD
+=======
+  }
+>>>>>>> feature-obtener-eventos-de-usuario
 
+  // FILTRAR POR CAPACIDAD
+  filterByDate(start_date: string, end_date: string) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/date/${start_date}/${end_date}`
+      ));
+  }
+
+  // FILTRAR POR TEXTO
+  getEventTitle(text: string) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/filter/${text}`
+      ));
+  }
+
+
+
+
+
+  // REGISTRAR USUARIO
   registerUserToEvent(body: IRegisterEventSubscribe) {
     return lastValueFrom(
       this.httpClient.post<IRegisterResponse>(`${this.baseUrl}/register/register-event`, body)
