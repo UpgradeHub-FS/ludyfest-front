@@ -25,6 +25,11 @@ export class EventService {
     );
   }
 
+  getMyEvent() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/my-events`)
+    )
+  }
 
 
   getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
@@ -39,6 +44,13 @@ export class EventService {
     );
   }
   // CREAR EVENTO
+
+  deleteRegisterToEvent(idEvent: number) {
+    return lastValueFrom(
+      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register${idEvent}`)
+    );
+  }
+
   createEvent(newEvent: IEvent) {
     return lastValueFrom(
       this.httpClient.post<IEvent>(`${this.baseUrl}`, newEvent)
@@ -58,10 +70,10 @@ export class EventService {
     );
   }
   getRegisteredEventsByUserId(userId: number) {
-  return lastValueFrom(
-    this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
-  );
-}
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
+    );
+  }
 
 
 
@@ -87,6 +99,10 @@ export class EventService {
     );
   }
 
+<<<<<<< HEAD
+=======
+  }
+>>>>>>> feature-obtener-eventos-de-usuario
 
   // FILTRAR POR CAPACIDAD
   filterByDate(start_date: string, end_date: string) {
@@ -94,7 +110,7 @@ export class EventService {
       this.httpClient.get<IEvent[]>(`${this.baseUrl}/date/${start_date}/${end_date}`
       ));
   }
-  
+
   // FILTRAR POR TEXTO
   getEventTitle(text: string) {
     return lastValueFrom(
