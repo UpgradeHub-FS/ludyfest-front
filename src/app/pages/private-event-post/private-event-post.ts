@@ -15,6 +15,35 @@ export class PrivateEventPost {
   eventService = inject(EventService);
   router = inject(Router)
 
+  imagenesDisponibles: string[] = [
+    'assets/img/ajedrez.jpg',
+    'assets/img/arte.jpg',
+    'assets/img/basket.jpg',
+    'assets/img/cine.jpg',
+    'assets/img/clasico.jpg',
+    'assets/img/cocina.jpg',
+    'assets/img/djparty.jpg',
+    'assets/img/docu.jpg',
+    'assets/img/fifa.jpg',
+    'assets/img/flamenco.jpg',
+    'assets/img/foodtrucks.jpg',
+    'assets/img/foto.jpg',
+    'assets/img/halloween.jpg',
+    'assets/img/indie.jpg',
+    'assets/img/infantil.jpg',
+    'assets/img/jazzfest.jpg',
+    'assets/img/kayak.jpg',
+    'assets/img/padel.jpg',
+    'assets/img/pintura.jpg',
+    'assets/img/playa.jpg',
+    'assets/img/reggateon.jpg',
+    'assets/img/rock.jpg',
+    'assets/img/senderismo.jpg',
+    'assets/img/teatro.jpg',
+    'assets/img/terror.jpg'
+  ];
+
+
   formulario: FormGroup = new FormGroup({
     
     title: new FormControl(null, [

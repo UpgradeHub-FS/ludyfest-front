@@ -1,23 +1,23 @@
 /* Estilo general del contenedor */
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 2rem auto;
-  padding: 1rem;
-  font-family: 'Arial', sans-serif;
-  color: #333;
+  padding: 1.875rem;
+  font-family: 'Rubik', sans-serif;
+  color: #333333;
 }
 
 /* Título del perfil */
 h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #21242e;
+  font-size: 2.8125rem;
+  margin: 2.5rem 0;
+  color: var(--color-principal);
+  opacity: 0.5;
 }
 
 /* Información del usuario */
 .user-info {
-  background-color: #f4f4f4;
+  background-color: white;
   padding: 1rem;
   border-radius: 12px;
   margin-bottom: 2rem;
@@ -57,7 +57,7 @@ h2 {
 }
 
 /* Mensaje sin eventos */
-.no-events {
+.mensaje-no-eventos {
   text-align: center;
   color: #999;
   font-size: 1rem;
