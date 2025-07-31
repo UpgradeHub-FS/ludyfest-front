@@ -24,7 +24,7 @@ export class Register {
       Validators.required,
       Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
     ]),
-    password: new FormControl(null,[Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{5,10}$/)]),
+    password: new FormControl(null,[Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{5,20}$/)]),
     repite_password: new FormControl(),
     rol: new FormControl(),
   }, [this.passwordValidator]);
