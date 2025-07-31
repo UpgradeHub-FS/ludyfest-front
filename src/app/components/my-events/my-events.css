@@ -35,6 +35,10 @@
 }
 
 
+.logo {
+    display: none;
+}
+
 .event__cards {
     grid-template-columns: repeat(4, 1fr);
     display: grid;

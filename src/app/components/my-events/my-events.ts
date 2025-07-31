@@ -1,12 +1,11 @@
 import { Component, inject, Input } from '@angular/core';
 import { IEvent } from '../../interfaces/IEvents';
 import { EventService } from '../../services/event.service';
-import { CardEvent } from '../card-event/card-event';
-import { RouterLink } from '@angular/router';
+import { CardMyEvents } from '../card-my-events/card-my-events';
 
 @Component({
   selector: 'app-my-events',
-  imports: [CardEvent],
+  imports: [CardMyEvents],
   templateUrl: './my-events.html',
   styleUrl: './my-events.css'
 })

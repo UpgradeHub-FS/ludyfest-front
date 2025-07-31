@@ -5,7 +5,7 @@
 
         @for(item of events; track item.users_id){
 
-        <card-event [event]="item"></card-event>
+        <app-card-my-events [event]="item"></app-card-my-events>
 
         }@empty {
         <h3 class="mensaje-no-eventos">No hay eventos</h3>

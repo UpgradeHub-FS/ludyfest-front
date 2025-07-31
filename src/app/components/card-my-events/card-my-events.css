@@ -1,15 +1,19 @@
 article {
     font-family: 'Rubik200';
     margin: 0 auto;
-    width: 350px;
+    width: 250px;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: 0.5s;
+
+
+
+
 }
 
-article div {
+/* article div {
     padding: 0px 0px 20px 0px;
-}
+} */
 
 section:hover {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 1);
@@ -18,8 +22,8 @@ section:hover {
 img {
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
-    width: 350px;
-    height: 350px;
+    width: 250px;
+    height: 150px;
 }
 
 
@@ -31,11 +35,6 @@ h3 {
     margin-top: 15px;
 }
 
-
-
-
-
-
 button {
     width: 130px;
     height: 40px;
@@ -43,6 +42,7 @@ button {
     background-color: var(--color-principal);
     border: none;
     color: var(--color-blanco-ludy);
+    margin: 5px;
 }
 
 button:hover {
@@ -70,13 +70,13 @@ button:hover {
     img {
         object-fit: cover;
         width: 100%;
-        height: 350px;
+        height: 150px;
     }
 
     button,
     button:hover {
-        width: 200px;
-        height: 60px;
+        width: 170px;
+        height: 40px;
     }
 
 
