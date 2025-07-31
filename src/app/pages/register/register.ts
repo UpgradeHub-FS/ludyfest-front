@@ -26,7 +26,6 @@ export class Register {
     ]),
     password: new FormControl(null, [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{5,10}$/)]),
     repite_password: new FormControl(null, [Validators.required]),
-    rol: new FormControl(),
   }, [this.passwordValidator]);
   checkError(field: string, error: string) {
     return this.formulario.get(field)?.hasError(error) &&
@@ -34,8 +33,10 @@ export class Register {
   }
 
   async onSubmit() {
+    const { repite_password, ...usuario } = this.formulario.value;
     try {
-      const response = await this.UserService.registro(this.formulario.value);
+      await this.UserService.registro(usuario);
+
       await Swal.fire({
         title: 'Exito',
         text: 'Usuario creado correctamente',
