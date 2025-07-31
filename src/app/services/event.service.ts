@@ -99,11 +99,6 @@ export class EventService {
     );
   }
 
-<<<<<<< HEAD
-=======
-  }
->>>>>>> feature-obtener-eventos-de-usuario
-
   // FILTRAR POR CAPACIDAD
   filterByDate(start_date: string, end_date: string) {
     return lastValueFrom(
