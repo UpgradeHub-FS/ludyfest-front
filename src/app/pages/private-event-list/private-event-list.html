@@ -39,8 +39,8 @@
                     [ngClass]="{ 'badge-success': event.status === 1, 'badge-danger': event.status === 0 }">
                     {{ event.status === 1 ? 'Upcoming' : 'Not available' }}
                 </span>
-
-                <p>📅 {{ event.date }} &nbsp; 👤 {{ event.capacity }}</p>
+                <!--añadido el datePIPE-->
+                <p>📅 {{ event.date | date:'dd/MM/yyyy HH:mm' }} &nbsp; 👤 {{ event.capacity }}</p>
                 <p>💶 {{ event.price }}€</p>
 
             </div>
