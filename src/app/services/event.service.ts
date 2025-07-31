@@ -31,6 +31,7 @@ export class EventService {
     )
   }
 
+
   getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
     return lastValueFrom(
       this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
@@ -40,6 +41,12 @@ export class EventService {
   registerToEvent(id: number, eventId: number, body: IRegisterToEvent) {
     return lastValueFrom(
       this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
+    );
+  }
+
+  deleteRegisterToEvent(idEvent: number) {
+    return lastValueFrom(
+      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register${idEvent}`)
     );
   }
 
