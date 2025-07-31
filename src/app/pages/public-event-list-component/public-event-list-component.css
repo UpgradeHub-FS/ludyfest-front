@@ -1,21 +1,37 @@
+/* ___________ GENERALES __________ */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: var(--fuente-principal);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente-principal);
 }
-.filterBar{
-    display: flex;
-    height: 20px;
 
-}
 .container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    margin: 0 auto;
+    padding: 40px;
 }
 
-/* TÍTULO */
+
+select {
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    flex: 1;
+}
+
+
+/* ___________ TITULO Y BUSCADOR DE TEXTO ___________ */
+
+.LogoYBuscador {
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .title {
     font-size: 2.8125rem;
     color: var(--color-principal);
@@ -24,46 +40,84 @@
     display: flex;
 }
 
-
-.logo-container img {
-    height: 80px;
-    object-fit: contain;
-}
-.filterEvent{
-    display: flex;
-    flex-direction: column;
+.BuscadorTexto {
+    font-size: 150%;
+    border-radius: 20px;
+    padding-left: 10px;
 }
 
-
-.filterBar{
-    max-width: 100%;
-    height: 10px;
-    
-    display: flex;
-
+.botonBuscarTexto {
+    font-size: 150%;
+    border-radius: 50px;
+    color: white;
+    background-color: var(--color-principal);
+    border: 3px solid var(--color-principal);
 }
 
 
-/*ELEGIR CATEGORIA  */
+/* ____________ BARRA CON LOS FILTROS _____________ */
+
 .filterBar {
     width: 100%;
-    height: 300px;
+    height: 20%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-    background-color: #c0bfbf;
+    flex-direction: row;
+    gap: 2%;
+    margin-bottom: 2%;
+    justify-content: space-between;
+    background-color: #03b5dc;
+}
+
+.filterEvent {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    background-color: #666;
+}
+
+.filterEvent>p {
+    padding-inline: 10px;
+
+
 }
 
 
-select {
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #c0bfbf;
-    font-size: 14px;
-    flex: 1;
-    min-width: 180px;
+
+/* PRECIO */
+
+.dateBar {
+
+    border-color: rgb(255, 255, 255);
+    border: 1px solid white;
 }
+
+.dateButoon {
+    height: 30px;
+    border-radius: 50px;
+    color: white;
+    background-color: var(--color-principal);
+    border: 3px solid var(--color-principal);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* EVENT CARD */
 .event-card {
@@ -187,10 +241,10 @@ select {
     margin-right: 20px;
 }
 
-/* RESPONSIVE */
+
 
 /* TABLET */
-@media (max-width: 992px) {
+@media (max-width:1056px) {
     .header {
         flex-direction: column;
         align-items: flex-start;
@@ -209,23 +263,78 @@ select {
     }
 
 
-    .filterBar  {
+    .filterBar {
         flex-direction: column;
         align-items: stretch;
     }
 
-
+   .filterEvent {
+        font-size: 20px;
+        text-align: center;
+        align-items: center;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
 }
 
 /* MÓVIL*/
-@media (max-width: 600px) {
+@media (max-width: 850px) {
+
+
+
+
+
+    .filterEvent {
+        font-size: 20px;
+        text-align: center;
+        align-items: center;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+
+    .LogoYBuscador {
+        display: flex;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .BuscadorTexto {
+        font-size: 250%;
+        border-radius: 20px;
+        padding-left: 10px;
+    }
+
+    .botonBuscarTexto {
+        font-size: 250%;
+    }
+
+
+
     .event-image {
-        width: 120px;
-        height: 160px;
+        width: 100%;
+        height: 200px;
         aspect-ratio: auto;
         flex-shrink: 0;
         border-radius: 12px;
     }
+
+    .container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+
+    }
+
 
     .event-card {
         margin: 1rem auto;
@@ -246,5 +355,32 @@ select {
 
     .badge {
         margin-top: 6px;
+    }
+
+
+
+    @media (max-width: 720px) {
+        .LogoYBuscador {
+            width: 100%;
+        }
+        .BuscadorTexto {
+            font-size: 200%;
+        }
+
+        .botonBuscarTexto {
+            font-size: 200%;
+        }
+
+        
+    .filterEvent {
+        font-size: 100%;
+        text-align: center;
+        align-items: center;
+        height: 40px;
+        display: flex;
+        
+        margin-top: 10px;
+    }
+
     }
 }
