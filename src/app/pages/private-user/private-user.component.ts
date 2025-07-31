@@ -22,6 +22,7 @@ export class PrivateUserComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.user = await this.userService.getProfile();
+      console.log('Usuario cargado:', this.user);
 
       const allEvents = await this.eventService.getAll();
 

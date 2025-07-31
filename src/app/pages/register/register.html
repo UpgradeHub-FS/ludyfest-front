@@ -3,14 +3,14 @@
 
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-      <label class="form-label">Name: </label>
-      <input type="text" class="form-control" formControlName="name" placeholder="Introduce tu nombre">
+      <label class="form-label">Nombre: </label>
+      <input type="text" class="form-control" formControlName="name">
       @if(checkError('name', 'required')){
       <p class="error"> El campo nombre es obligatorio</p>
 
       }
       @if(checkError('name', 'minlength')){
-      <p class="error"> El nombre debe tener minimo 3 caracteres</p>
+      <p class="error"> El nombre debe tener mínimo 3 carácteres</p>
 
       }
 
@@ -23,33 +23,42 @@
     </div>
     <div class="mb-3">
       <label class="form-label">Email: </label>
-      <input type="email" class="form-control" formControlName="email" placeholder="Introduce tu email">
+      <input type="email" class="form-control" formControlName="email">
       @if(checkError('email', 'required')){
-      <p class="error">El campo es obligatorio</p>
+      <p class="error">El campo email es obligatorio</p>
       }
       @if(checkError('email', 'pattern')){
-      <p class="error">El formato del email no es valido</p>
+      <p class="error">El formato del email no es válido</p>
       }
     </div>
     <div class="mb-3">
       <label class="form-label">Password: </label>
-      <input type="password" class="form-control" formControlName="password"
-        placeholder="Necesario 1 mayuscula,numeros y 1 caracter especial">
+      <input type="password" class="form-control" formControlName="password">
       @if (checkError('password', 'required')) {
-      <p class="error">La contraseña es obligatoria</p>
+      <p class="error">La contraseña es obligatoria.</p>
+      }
+      @if (checkError('password', 'pattern')) {
+      <p class="error">
+        La contraseña debe tener entre 5 y 10 caracteres, incluir al menos una mayúscula, una minúscula, un número y un
+        carácter especial.
+      </p>
       }
     </div>
     <div class="mb-3">
-      <label class="form-label">Repite Password: </label>
-      <input type="password" class="form-control" formControlName="repite_password" placeholder="Repite tu password">
+      <label class="form-label">Repite el password: </label>
+      <input type="password" class="form-control" formControlName="repite_password">
+      @if (formulario.get('repite_password')?.touched && formulario.hasError('passwordvalidator')) {
+      <p class="error">Las contraseñas no coinciden.</p>
+      }
+      @if(checkError('repite_password', 'required')) {
+      <p class="error">Este campo es obligatorio</p>
+      }
     </div>
-
 
 
 
     <div class="d-grid gap-2">
       <input type="submit" value="Enviar" class=" btn btn-warning" [disabled]="!formulario.valid">
-
     </div>
 
 
