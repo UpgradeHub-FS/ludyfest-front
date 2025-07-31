@@ -5,17 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { IEvent } from '../../interfaces/IEvents';
 import { EventService } from '../../services/event.service';
-
-// import { EventService } from './../../services/event.service';
-// import { IEvent } from './../../interfaces/IEvents';
-// import { Component, OnInit, inject, numberAttribute } from '@angular/core';
-// import { RouterLink } from '@angular/router';
-// import { CommonModule } from '@angular/common';
-// import { FormsModule } from '@angular/forms';
-// import Swal from 'sweetalert2';
-
-
-
+import { formatDate } from '@angular/common';
+;
 @Component({
   selector: 'app-public-event-list-component',
   imports: [CommonModule, FormsModule, RouterLink],
@@ -24,28 +15,17 @@ import { EventService } from '../../services/event.service';
 })
 export class PublicEventListComponent {
 
-
-
-
-  searchTerm = '';
-  arrEvents: IEvent[] = []
   eventService = inject(EventService);
+  arrEvents: IEvent[] = []
+
   sortOption = '';
+  selectedCategories = '';
   selectedCategory = '';
-  categories: { [key: number]: string } = {
-    1: 'Conciertos',
-    2: 'Parties',
-    3: 'Experiencias',
-    4: 'Torneos',
-    5: 'Cultura',
-    6: 'Cine',
-  };
+  selectPrice = '';
+  textEvent = '';
+  dateInit = '';
+  dateEnd = '';
 
-
-  async ngOnInit() {
-    const response = await this.eventService.getAll();
-    this.arrEvents = response;
-  }
 
 
   // Cuando se cambia de categoría...
@@ -53,40 +33,23 @@ export class PublicEventListComponent {
     this.selectedCategory = event.target.value;
   }
 
-  get filteredEvents() {
-    let filtered = this.arrEvents;
 
-    // Filtro por categoría (si está seleccionada)
-    if (this.selectedCategory) {
-      filtered = filtered.filter(event => this.categories[event.categories_id] === this.selectedCategory);
+  // CONVERSOR DE CODIGO NUMERICO A TEXTO
+  getStatusText(status: number): string {
+    switch (status) {
+      case 1: return 'Upcoming';   // Próximo
+      case 0: return 'Not available';  // Cancelado
+      default: return 'Unknown';   // Desconocido
     }
-
-    // Búsqueda por título (escribir)
-    if (this.searchTerm.trim()) {
-      const term = this.searchTerm.toLowerCase();
-      filtered = filtered.filter(event => event.title.toLowerCase().includes(term));
-    }
-
-    // Ordenar segun abecedario o fecha
-    if (this.sortOption === 'az') {
-      filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (this.sortOption === 'za') {
-      filtered = filtered.sort((a, b) => b.title.localeCompare(a.title));
-    } else if (this.sortOption === 'date') {
-      filtered = filtered.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    }
-
-    return filtered;
   }
-
-  async onChangeAforo(event: any) {
-    console.log(event.target.value);
-    this.selectedCategory = event.target.value;
-
-
-
+  // CSS PARA EL ESTADO DEL EVENTO
+  getStatusClass(status: number): string {
+    switch (status) {
+      case 1: return 'upcoming';   // próximos
+      case 0: return 'cancelled';  // cancelados
+      default: return 'unknown';   // desconocidos
+    }
   }
-
 
 
   async onClick(idEvent: number) {
@@ -107,7 +70,53 @@ export class PublicEventListComponent {
     }
   }
 
+  // __________________________ ⚡ RUTAS BACK _______________________________
 
+  async ngOnInit() {
+    const response = await this.eventService.getAll();
+    this.arrEvents = response;
+  }
 
+  // FILTRAR EVENTOS POR AFORO
+  async onChangeAforo(event: any) {
+    this.selectedCategory = event.target.value;
+    const aforos = event.target.value.split('/');
 
+    const response = await this.eventService.filterByCapacity(aforos[0], aforos[1]);
+    this.arrEvents = response;
+  }
+
+  // FILTRAR EVENTOS POR PRECIO
+  priceValue: number = 0;
+  async onChangePrice(event: any) {
+    console.log(this.priceValue);
+    this.selectPrice = event.target.value;
+
+    const price = await this.eventService.filterByPrice(event.target.value);
+    this.arrEvents = price
+  }
+
+  // FILTRAR POR CATEGORIAS
+  async onChangeCategories(event: any) {
+    this.selectedCategories = event.target.value;
+    const arrCategories = await this.eventService.get_event_by_category(event.target.value);
+    this.arrEvents = arrCategories
+  }
+
+  // FILTRAR POR FECHAS
+  async filterByDate() {
+    const response = await this.eventService.filterByDate(this.dateInit, this.dateEnd);
+    this.arrEvents = response;
+  }
+
+  // FILTRAR POR TEXTO
+  async getEventTitle() {
+    const text = this.textEvent.trim();
+    const response = await this.eventService.getEventTitle(text);
+    this.arrEvents = response;
+  }
 }
+
+
+
+

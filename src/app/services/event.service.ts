@@ -32,13 +32,13 @@ export class EventService {
       this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
-
+  // REGISTRARSE A UN EVENTO
   registerToEvent(body: IRegisterToEvent) {
     return lastValueFrom(
       this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
     );
   }
-
+  // CREAR EVENTO
   createEvent(newEvent: IEvent) {
     return lastValueFrom(
       this.httpClient.post<IEvent>(`${this.baseUrl}`, newEvent)
@@ -51,20 +51,56 @@ export class EventService {
     );
   }
 
+  // BORRAR POR ID
   deleteEventById(idEvent: number) {
     return lastValueFrom(
       this.httpClient.delete<IEvent>(`${this.baseUrl}/${idEvent}`)
     );
   }
 
+
+  // FILTRAR POR CAPACIDAD
   filterByCapacity(min_capacity: number, max_capacity: number) {
     return lastValueFrom(
       this.httpClient.get<IEvent[]>(`${this.baseUrl}/capacity/${min_capacity}/${max_capacity}`
-      )
+      ));
+  }
+
+
+  // FILTRAR POR PRECIO
+  filterByPrice(min_price: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/price/${min_price}`));
+  }
+
+
+  // FILTRAR POR CATEGORIA
+  get_event_by_category(category: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/category/${category}`)
     );
+  }
 
-}
 
+  // FILTRAR POR CAPACIDAD
+  filterByDate(start_date: string, end_date: string) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/date/${start_date}/${end_date}`
+      ));
+  }
+  
+  // FILTRAR POR TEXTO
+  getEventTitle(text: string) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/filter/${text}`
+      ));
+  }
+
+
+
+
+
+  // REGISTRAR USUARIO
   registerUserToEvent(body: IRegisterEventSubscribe) {
     return lastValueFrom(
       this.httpClient.post<IRegisterResponse>(`${this.baseUrl}/register/register-event`, body)
