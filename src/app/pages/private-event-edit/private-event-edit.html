@@ -69,7 +69,9 @@
                     <option value=6>Cine</option>
                 </select>
             </div>
-            <input type="submit" value="Enviar" class="btn btn-info">
+            <div class="d-grid gap-2">
+                <input type="submit" value="Enviar" class=" btn btn-warning" [disabled]="!formulario.valid">
+            </div>
         </form>
     </div>
 </section>

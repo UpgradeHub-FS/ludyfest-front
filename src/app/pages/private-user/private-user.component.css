@@ -1,34 +1,24 @@
-.user-profile {
-  max-width: 1000px;
+section {
+  font-family: 'Rubik', sans-serif;
+  max-width: 1200px;
   margin: 0px auto;
-  padding: 40px;
-
+  padding: 1.875rem;
 }
 
-.user-card {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Estilo para el h2*/
+h2 {
+  font-size: 2.8125rem;
+  color: var(--color-principal);
+  opacity: 0.5;
+  margin-bottom: 2.5rem;
 }
 
-.user-card h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.user-card p {
+/* Estilo para div*/
+div {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin: 1rem 0;
   font-size: 1rem;
-  color: #555;
-  margin: 0.5rem 0;
-}
-
-.user-card span.label {
-  font-weight: bold;
-  color: #222;
+  color: #333333;
 }
