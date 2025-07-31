@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-private-event-post',
   imports: [ReactiveFormsModule],
@@ -15,9 +16,7 @@ export class PrivateEventPost {
   router = inject(Router)
 
   formulario: FormGroup = new FormGroup({
-    id: new FormControl(null, [
-      Validators.required,
-    ]),
+    
     title: new FormControl(null, [
       Validators.required,
 
@@ -62,29 +61,52 @@ export class PrivateEventPost {
       Validators.required,
 
     ]),
-    users_id: new FormControl(null, [
-      Validators.required,
-    ])
+    
   });
 
   async onSubmit() {
-    try {
-      const response = await this.eventService.createEvent(this.formulario.value);
-      console.log(response)
-      await Swal.fire({
-        title: 'Éxito',
-        text: 'Congratulations!!! se ha creado un nuevo evento',
-        icon: 'success'
-      });
-      this.router.navigateByUrl('/events/private/admin');
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        title: 'Error',
-        text: 'Error en el envío, revisa el formulario.',
-        icon: 'error'
-      });
+  try {
+    const raw = this.formulario.value;
+
+    const payload = {
+      ...raw,
+      price: parseFloat(raw.price),
+      capacity: parseInt(raw.capacity, 10),
+      latitude: parseFloat(raw.latitude),
+      longitude: parseFloat(raw.longitude),
+      status: parseInt(raw.status, 10),
+      categories_id: parseInt(raw.categories_id, 10),
+      // 👇 Aquí transformamos la fecha al formato ISO completo
+      date: new Date(raw.date).toISOString().split('.')[0], // Esto elimina ".000Z"
+    };
+
+    console.log('Payload a enviar:', payload);
+
+    const response = await this.eventService.createEvent(payload);
+    console.log(response);
+
+    await Swal.fire({
+      title: 'Éxito',
+      text: '¡Se ha creado un nuevo evento!',
+      icon: 'success'
+    });
+
+    this.router.navigateByUrl('/events/private/admin');
+
+  } catch (error: any) {
+    console.log('Error en el submit:', error);
+
+    let message = 'Error en el envío, revisa el formulario.';
+    if (error.error && error.error.detail) {
+      message = JSON.stringify(error.error.detail);
     }
+
+    Swal.fire({
+      title: 'Error',
+      text: message,
+      icon: 'error'
+    });
   }
+}
 
 }
