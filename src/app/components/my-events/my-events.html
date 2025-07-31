@@ -1,0 +1,14 @@
+<section class="event_section">
+    <h1 class="title">✨Mis Eventos✨</h1>
+
+    <div class="event__cards">
+
+        @for(item of events; track item.users_id){
+
+        <card-event [event]="item"></card-event>
+
+        }@empty {
+        <h3 class="mensaje-no-eventos">No hay eventos</h3>
+        }
+    </div>
+</section>

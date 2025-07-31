@@ -3,9 +3,11 @@ import { EventService } from '../../services/event.service';
 import { UserService } from '../../services/user.service';
 import { IEvent } from '../../interfaces/IEvents';
 import { IUser } from '../../interfaces/IUser';
+import { MyEvents } from '../../components/my-events/my-events';
 
 @Component({
   selector: 'app-private-user',
+  imports: [MyEvents],
   templateUrl: './private-user.component.html',
   styleUrls: ['./private-user.component.css']
 })
@@ -17,7 +19,7 @@ export class PrivateUserComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private userService: UserService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     try {

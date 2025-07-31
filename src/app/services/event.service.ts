@@ -25,7 +25,11 @@ export class EventService {
     );
   }
 
-
+  getMyEvent() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/my-events`)
+    )
+  }
 
   getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
     return lastValueFrom(
@@ -57,10 +61,10 @@ export class EventService {
     );
   }
   getRegisteredEventsByUserId(userId: number) {
-  return lastValueFrom(
-    this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
-  );
-}
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
+    );
+  }
 
 
   filterByCapacity(min_capacity: number, max_capacity: number) {
@@ -69,7 +73,7 @@ export class EventService {
       )
     );
 
-}
+  }
 
   registerUserToEvent(body: IRegisterEventSubscribe) {
     return lastValueFrom(
