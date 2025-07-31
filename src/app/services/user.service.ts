@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/IUser';
 import { lastValueFrom } from 'rxjs';
 import { IUserLogin } from '../interfaces/IUserLogin';
+import { IUpdateUserResponse } from '../interfaces/IUpdateUserResponse';
 
 
 type LoginResponse = {
@@ -46,11 +47,30 @@ export class UserService {
   }
 
 
-  isLogged(){
-    const token = localStorage.getItem('token_lu')
-    if(!token){
+  isLogged() {
+    const token = localStorage.getItem('token')
+    if (!token) {
       return false
     }
     return true
   }
+
+  getById(user_id: number) {
+    return lastValueFrom(
+      this.httpclient.get<IUser>(`http://localhost:8000/users/${user_id}`)
+    );
+  }
+
+  getProfile() {
+    return lastValueFrom(
+      this.httpclient.get<IUser>(`http://localhost:8000/users/profile`)
+    );
+  }
+
+  updateUser(body: IUser) {
+    return lastValueFrom(
+      this.httpclient.put<IUpdateUserResponse>(`http://localhost:8000/users`, body)
+    );
+  }
+
 }

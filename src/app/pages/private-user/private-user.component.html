@@ -1,7 +1,18 @@
-<section class="user-profile">
-  <h2>Perfil Privado</h2>
+<!-- PERFIL DE USUARIO -->
+<div class="container">
+  <h2 class="title">Mi Perfil</h2>
 
-  <p><strong>Nombre:</strong> {{ (user$ | async)?.name }}</p>
-  <p><strong>Email:</strong> {{ (user$ | async)?.email }}</p>
-  <p><strong>Rol:</strong> {{ (user$ | async)?.rol }}</p>
-</section>
+  <div class="user-card">
+    <div class="user-info">
+      <h3>{{ user.name }}</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>Rol: {{ user.rol }}</p>
+    </div>
+  </div>
+
+  <!-- MENSAJE SI NO HAY EVENTOS -->
+  <div class="mensaje-no-eventos" [class.oculto]="!noEvents">
+    <p>No tienes eventos aún.</p>
+  </div>
+
+</div>

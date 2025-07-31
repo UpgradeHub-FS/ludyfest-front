@@ -36,9 +36,15 @@
                 <input type="text" class="form-control" formControlName="longitude">
             </div>
             <div class="mb-3">
-                <label for="" class="form-label">Imagen</label>
-                <input type="text" class="form-control" formControlName="image">
+                <label class="form-label">Imagen</label>
+                <select class="form-select" formControlName="image">
+                    <option value="">Selecciona una imagen</option>
+                    @for (img of imagenesDisponibles; track img) {
+                    <option [value]="img">{{ img }}</option>
+                    }
+                </select>
             </div>
+
             <div class="mb-3">
                 <label for="" class="form-label">Estado</label>
                 <select type="text" class="form-select" formControlName="status">
@@ -60,12 +66,11 @@
                     <option value=5>Cultura</option>
                     <option value=6>Cine</option>
                 </select>
-                <div class="mb-3">
-                    <label for="" class="form-label">IDUsuario</label>
-                    <input type="text" class="form-control" formControlName="users_id">
-                </div>
+
             </div>
-            <input type="submit" value="Enviar" class="btn btn-info">
+            <div class="d-grid gap-2">
+                <input type="submit" value="Enviar" class=" btn btn-warning" [disabled]="!formulario.valid">
+            </div>
         </form>
     </div>
 </section>

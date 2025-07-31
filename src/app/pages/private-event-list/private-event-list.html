@@ -1,6 +1,12 @@
 <!-- TÍTULO -->
 <div class="container">
-    <h2 class="title">Admin Events</h2>
+    <div class="boton-crear">
+        <h2 class="title">Admin Events</h2>
+        <button [routerLink]="['/events', 'private', 'admin', 'post']" class="btn btn-primary"><i
+                class="fa-solid fa-plus"></i> Crear Nuevo
+            Evento</button>
+
+    </div>
 
     <section class="my-3">
 
@@ -46,7 +52,7 @@
             </div>
 
             <div class="event-actions">
-                <button [routerLink]="['/events', 'private', 'admin', 'post']" class="btn btn-primary">Nuevo</button>
+
                 <button [routerLink]="['/events','private','admin','put', event.id]"
                     class="btn btn-update">Actualizar</button>
                 <button class="btn btn-delete" (click)="onClick(event.id)">Borrar</button>

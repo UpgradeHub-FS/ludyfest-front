@@ -1,71 +1,66 @@
-/* Estilos generales Events */
 section {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+  font-family: 'Rubik', sans-serif;
+  font-family: 'Rubik', sans-serif;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.875rem;
 }
 
-/* principal */
-:host {
-  display: block;
-  font-family: 'Poppins', sans-serif;
-  padding: 0 15px;
-  color: #333;
-}
-
-/* inicio Título events */
+/* Estilo para el h2*/
 h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #5A2DA4;
+  font-size: 2.8125rem;
+  color: var(--color-principal);
+  opacity: 0.5;
 }
 
-/* Imagen event */
-.event-image {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+/* Estilo para los párrafos de error */
+.error {
+  color: var(--color-accion-error);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
-/* informacionnn */
-p {
+
+/* Estilo para etiquetas */
+label {
+  font-weight: 500;
+  color: black;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Estilo para los inputs */
+input.form-control,
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
   font-size: 1rem;
-  margin: 8px 0;
+  color: #333333;
 }
 
-/* Descripción */
-.description {
-  margin-top: 20px;
-  line-height: 1.5;
-  font-size: 1.1rem;
+/* Estilo para los inputs con el foco*/
+input.form-control:focus {
+  box-shadow: 0 0 0 2px var(--color-principal);
 }
 
-/* Badge para estado */
-.upcoming {
-  background-color: #28a745;
-  /* verde */
+/* Estilo para el botón */
+input[type="submit"] {
+  background-color: var(--color-principal);
   color: white;
-  padding: 6px 14px;
-  border-radius: 12px;
-  font-weight: bold;
-  display: inline-block;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.cancelled {
-  background-color: #dc3545;
-  /* rojo */
+/* Estilo para el botón deshabilitado */
+input[type="submit"]:disabled {
+  background-color: var(--color-principal);
   color: white;
-  padding: 6px 14px;
-  border-radius: 12px;
-  font-weight: bold;
-  display: inline-block;
-}
-
-/* Mensaje de que esta cargado */
-.loading-message {
-  font-style: italic;
-  color: #777;
+  opacity: 0.5;
 }

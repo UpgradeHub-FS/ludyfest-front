@@ -8,18 +8,19 @@
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 1rem;
 }
 
 .title {
-  font-weight: 700;
+  font-size: 2.8125rem;
   color: var(--color-principal);
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
+  opacity: 0.5;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
 }
+
 
 section {
   margin: 0 auto;

@@ -3,65 +3,67 @@
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
     <div class="mb-3">
-      <label class="form-label">Título</label>
+      <label class="form-label">Título:</label>
       <input type="text" class="form-control" formControlName="title" placeholder="Título del evento" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Descripción</label>
+      <label class="form-label">Descripción:</label>
       <textarea class="form-control" rows="3" formControlName="description" placeholder="Descripción"></textarea>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Fecha</label>
+      <label class="form-label">Fecha:</label>
       <input type="date" class="form-control" formControlName="date" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Precio</label>
+      <label class="form-label">Precio:</label>
       <input type="number" class="form-control" formControlName="price" placeholder="Precio en €" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Capacidad</label>
+      <label class="form-label">Capacidad:</label>
       <input type="number" class="form-control" formControlName="capacity" placeholder="Cantidad de personas" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Dirección</label>
+      <label class="form-label">Dirección:</label>
       <input type="text" class="form-control" formControlName="address" placeholder="Dirección del evento" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Latitud</label>
+      <label class="form-label">Latitud:</label>
       <input type="text" class="form-control" formControlName="latitude" placeholder="Latitud" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Longitud</label>
+      <label class="form-label">Longitud:</label>
       <input type="text" class="form-control" formControlName="longitude" placeholder="Longitud" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Imagen (URL)</label>
+      <label class="form-label">Imagen (URL):</label>
       <input type="text" class="form-control" formControlName="image" placeholder="URL de la imagen" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Estado</label>
+      <label class="form-label">Estado:</label>
       <input type="number" class="form-control" formControlName="status" placeholder="Estado (1=Activo, 2=Cancelado)" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">ID Categoría</label>
+      <label class="form-label">ID Categoría:</label>
       <input type="number" class="form-control" formControlName="categories_id" placeholder="Categoría (número)" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">ID Usuario</label>
+      <label class="form-label">ID Usuario:</label>
       <input type="number" class="form-control" formControlName="users_id" placeholder="ID del usuario" />
     </div>
 
-    <button type="submit" class="btn btn-info">Actualizar Evento</button>
+    <div class="d-grid gap-2">
+      <input type="submit" value="Actualizar Evento" class=" btn btn-warning" [disabled]="!formulario.valid">
+    </div>
   </form>
 </section>
