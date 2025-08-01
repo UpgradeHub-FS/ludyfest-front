@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 
+
+
 interface TokenPayload {
   expire: number;
   rol?: string;
@@ -11,6 +13,9 @@ interface TokenPayload {
   providedIn: 'root'
 })
 export class AuthService {
+  forceLogout() {
+    throw new Error('Method not implemented.');
+  }
   private readonly tokenKey = 'token';
 
   getToken(): string | null {

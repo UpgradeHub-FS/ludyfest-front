@@ -1,28 +1,22 @@
 /* Estilo general del contenedor */
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 2rem auto;
-  padding: 1rem;
-  font-family: 'Arial', sans-serif;
-  color: #333;
+  padding: 1.875rem;
+  font-family: 'Rubik', sans-serif;
+  color: #333333;
 }
 
 /* Título del perfil */
 h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #21242e;
+  font-size: 2.8125rem;
+  margin: 2.5rem 0;
+  color: var(--color-principal);
+  opacity: 0.5;
 }
 
 /* Información del usuario */
-.user-info {
-  background-color: #f4f4f4;
-  padding: 1rem;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+.user-info {}
 
 .user-info p {
   margin: 0.5rem 0;
@@ -34,6 +28,44 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.user-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.btn-info {
+  background-color: #7132d5;
+  color: white;
+  display: flex;
+  justify-content: right;
+  font-family: var(--fuente-principal);
+}
+
+.btn-info:hover {
+  background-color: #561eb6;
+  transform: scale(1.05);
 }
 
 /* Tarjeta de evento */
@@ -57,7 +89,7 @@ h2 {
 }
 
 /* Mensaje sin eventos */
-.no-events {
+.mensaje-no-eventos {
   text-align: center;
   color: #999;
   font-size: 1rem;

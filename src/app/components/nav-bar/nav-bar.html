@@ -23,7 +23,7 @@
           <li class="nav_item" [routerLink]="['/profile']">Profile</li>
         }
         
-        <!-- PARTE 4 tarea : Botones exclusivos para administradores -->
+         <!-- PARTE 4 tarea : Botones exclusivos para administradores -->
         @if (isAdmin) {
           <!-- Botón Users: lleva a la gestión de usuarios (PrivateUserList) -->
           <li class="nav_item" [routerLink]="['/users/private/admin']">Users</li>
@@ -36,5 +36,3 @@
         <li class="nav_item" (click)="logout()" style="cursor: pointer;">Logout</li>
       }
     </ul>
-  </div>
-</nav>
