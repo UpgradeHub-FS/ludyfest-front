@@ -4,10 +4,11 @@ import { UserService } from '../../services/user.service';
 import { IEvent } from '../../interfaces/IEvents';
 import { IUser } from '../../interfaces/IUser';
 import { MyEvents } from '../../components/my-events/my-events';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-private-user',
-  imports: [MyEvents],
+  imports: [MyEvents, RouterLink],
   templateUrl: './private-user.component.html',
   styleUrls: ['./private-user.component.css']
 })

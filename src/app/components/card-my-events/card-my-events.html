@@ -8,7 +8,7 @@
         <h4>{{event.title}}</h4>
         <p>{{event.date}}</p>
         <button [routerLink]="['/events', event.id]">View Details</button>
-        <!-- <button class="btn btn-delete" (click)="onClick(event.id)">Leave</button> -->
+        <button class="btn btn-delete" (click)="onClick(event.id)">Leave</button>
     </div>
     }
 </article>

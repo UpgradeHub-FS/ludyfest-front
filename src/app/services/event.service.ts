@@ -47,7 +47,7 @@ export class EventService {
 
   deleteRegisterToEvent(idEvent: number) {
     return lastValueFrom(
-      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register${idEvent}`)
+      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register/${idEvent}`)
     );
   }
 
@@ -98,6 +98,7 @@ export class EventService {
       this.httpClient.get<IEvent[]>(`${this.baseUrl}/category/${category}`)
     );
   }
+
 
   // FILTRAR POR CAPACIDAD
   filterByDate(start_date: string, end_date: string) {
