@@ -1,0 +1,17 @@
+<div class="event-detail-container">
+  <img [src]="event.image" alt="Imagen del evento" class="event-image" />
+
+  <h2 class="event-title">{{ event.title }}</h2>
+
+  <p class="event-description">{{ event.description }}</p>
+
+  <div class="event-meta">
+    <p><strong>Fecha:</strong> {{ event.date }}</p>
+    <p><strong>Dirección:</strong> {{ event.address }}</p>
+    <p><strong>Precio:</strong> {{ event.price }} €</p>
+    <p><strong>Aforo:</strong> {{ event.capacity }} personas</p>
+  </div>
+  <div class="event-actions">
+      <button class="btn btn-primary" (click)="onClick(event.id)">Apuntarse</button>  
+    </div>
+</div>
