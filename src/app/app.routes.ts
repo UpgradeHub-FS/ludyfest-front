@@ -12,13 +12,14 @@ import { PrivateEventEdit } from './pages/private-event-edit/private-event-edit'
 import { PrivateEventPost } from './pages/private-event-post/private-event-post';
 import { UpdateUser } from './pages/update-user/update-user';
 import { adminGuard, authGuard } from './guards/guards';
+import { EventDetailComponent } from './pages/event-detail/event-detail';
 
 
 
 export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'events', component: PublicEventListComponent },
-    { path: 'events/:idEvent', component: EventsComponent }, //OJO he cambiado 'id' a 'idEvent' !!!!!
+    { path: 'events/:idEvent', component: EventDetailComponent }, //OJO he cambiado 'id' a 'idEvent' !!!!!
     { path: 'events/private/admin', component: PrivateEventList, canActivate: [adminGuard] },
     { path: 'events/private/admin/put/:idEvent', component: PrivateEventEdit, canActivate: [adminGuard] },
     { path: 'events/private/admin/post', component: PrivateEventPost, canActivate: [adminGuard] },
