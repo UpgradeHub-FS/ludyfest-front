@@ -3,7 +3,7 @@
         <h2 class="title">Events</h2>
         <div>
             <input class="BuscadorTexto" type="text" placeholder="Buscar..." [(ngModel)]="textEvent" />
-                 &nbsp;
+            &nbsp;
             <button class="botonBuscarTexto" (click)="getEventTitle()">Buscar</button>
         </div>
 
@@ -35,6 +35,18 @@
                     <option value="250/100000">más de 250</option>
                 </select>
 
+                <div class="filterEvent barraDate">
+                    <p>Fecha de</p>
+                    <div class="filterEvent">
+                        <input class="dateBar" type="date" [(ngModel)]="dateInit" name="fechaInicio">
+                    </div>
+                    <p>a</p>
+                    <div class="filterEvent">
+                        <input class="dateBar" type="date" [(ngModel)]="dateEnd" name="fechaFin">
+                    </div>
+                    &nbsp;
+                    <button class="dateButoon" (click)="filterByDate()">Filtrar</button>
+                </div>
 
                 <!-- FILTRAR POR RANGO DE PRECIO -->
                 <div class="filterEvent">
@@ -48,21 +60,6 @@
                 <!-- FILTRAR POR FECHA -->
 
 
-                <div class="filterEvent barraDate">
-                    <p>Fecha de</p>
-                    <div class="filterEvent">
-                        <input class="dateBar" type="date" [(ngModel)]="dateInit" name="fechaInicio">
-                    </div>
-                    <p>a</p>
-                    <div class="filterEvent">
-                        <input class="dateBar" type="date" [(ngModel)]="dateEnd" name="fechaFin">
-                    </div>
-                    &nbsp;
-                    <button class="dateButoon" (click)="filterByDate()">Filtrar</button>
-
-
-
-                </div>
 
 
             </div>
@@ -81,7 +78,7 @@
         @for (event of arrEvents; track event.id) {
         <div class="event-card">
             <figure class="event-image">
-                <img  alt="{{ event.image }}" />
+                <img [src]="event.image" alt="{{ event.image }}" />
             </figure>
 
             <div class="event-info">
