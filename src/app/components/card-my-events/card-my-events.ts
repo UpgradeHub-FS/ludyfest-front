@@ -1,8 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IEvent } from '../../interfaces/IEvents';
 import Swal from 'sweetalert2';
 import { EventService } from '../../services/event.service';
+import { IRegisterResponse } from '../../interfaces/IRegisterResponse';
+import { IEvent } from '../../interfaces/IEvents';
 
 @Component({
   selector: 'app-card-my-events',
@@ -12,10 +13,10 @@ import { EventService } from '../../services/event.service';
 })
 export class CardMyEvents {
   @Input() event: IEvent | undefined;
-
+  @Output() cargarEventos: EventEmitter<string> = new EventEmitter();
   eventService = inject(EventService);
 
-  async onClick(idEvent: number) {
+  async onClick() {
     try {
       const result = await Swal.fire({
         title: "Abandonar el evento",
@@ -28,11 +29,10 @@ export class CardMyEvents {
       })
 
       if (result.isConfirmed) {
-        await this.eventService.deleteRegisterToEvent(idEvent);
+        await this.eventService.deleteRegisterToEvent(this.event?.id!);
         Swal.fire('Éxito', 'Se ha abandonado el evento', 'success');
 
-        /*         const response = await this.eventService.getAll();
-                this.arrEvents = response; */
+        this.cargarEventos.emit()
       }
     } catch (error) {
       Swal.fire('Error', 'El evento no existe.', 'error');
