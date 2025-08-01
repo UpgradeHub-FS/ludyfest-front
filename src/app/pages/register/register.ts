@@ -15,6 +15,10 @@ export class Register {
   UserService = inject(UserService)
   router = inject(Router);
 
+  verPassword = false;
+  verRepitePassword = false;
+
+
   formulario: FormGroup = new FormGroup({
     name: new FormControl(null, [
       Validators.required,

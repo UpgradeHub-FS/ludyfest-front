@@ -1,5 +1,6 @@
-import { Component, HostListener, OnInit, inject } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { Component, HostListener, OnInit, inject, OnDestroy } from '@angular/core';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'nav-bar',
@@ -7,25 +8,45 @@ import { RouterLink, Router } from '@angular/router';
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css'
 })
-export class NavBar implements OnInit {
-
+export class NavBar implements OnInit, OnDestroy {
   // BARRA DE NAVEGACION
   isFixed: boolean = false;
   isLoggedIn: boolean = false; // variable si el user esta logado
   isAdmin: boolean = false; // si el user tiene el rol de admin
-
+  
   // Inyec de las dependencias
   private router = inject(Router);
+  
+  // 🚀 NUEVA FUNCIONALIDAD: Suscripción para detectar cambios de ruta
+  private routerSubscription?: Subscription;
 
   async ngOnInit(): Promise<void> {
     try {
       // Verificar estado de autenticación al cargar el componente
       await this.checkAuthStatus();
+      
+      // 🚀 CLAVE: Escuchar cambios de ruta para actualizar automáticamente
+      this.routerSubscription = this.router.events
+        .pipe(
+          filter(event => event instanceof NavigationEnd)
+        )
+        .subscribe(async () => {
+          // Cada vez que navegas, verifica el estado de nuevo
+          await this.checkAuthStatus();
+        });
+        
     } catch (error) {
       console.error('Error checking authentication status:', error);
       // En caso de error, asegurar que el usuario aparezca como no logueado
       this.isLoggedIn = false;
       this.isAdmin = false;
+    }
+  }
+
+  // 🚀 NUEVA FUNCIONALIDAD: Limpiar suscripción para evitar memory leaks
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
     }
   }
 
@@ -39,18 +60,24 @@ export class NavBar implements OnInit {
     try {
       // Obtener token del localStorage
       const token = localStorage.getItem('token');
-      
       if (token) {
         this.isLoggedIn = true;
-        
         // Obtener datos del usuario desde localStorage
         const currentUserString = localStorage.getItem('currentUser');
-        
         if (currentUserString) {
           try {
             const currentUser = JSON.parse(currentUserString);
             // Verificar si es admin usando el campo 'rol' de la interfaz IUser
             this.isAdmin = currentUser.rol === 'admin';
+            
+            //  DEBUG: Para ver qué está pasando (puedes quitarlo después)
+            console.log('🔄 Navbar Auth Updated:', {
+              isLoggedIn: this.isLoggedIn,
+              isAdmin: this.isAdmin,
+              userRole: currentUser.rol,
+              hasToken: !!token
+            });
+            
           } catch (parseError) {
             console.error('Error parsing currentUser:', parseError);
             this.isAdmin = false;
@@ -58,13 +85,12 @@ export class NavBar implements OnInit {
         } else {
           this.isAdmin = false;
         }
-        
       } else {
         // No hay token, usuario no logueado
         this.isLoggedIn = false;
         this.isAdmin = false;
+        console.log('🔄 Navbar: No token found, user logged out');
       }
-      
     } catch (error) {
       console.error('Error in checkAuthStatus:', error);
       // En caso de error, resetear estado
@@ -78,7 +104,6 @@ export class NavBar implements OnInit {
     try {
       // Limpiar todos los datos de autenticación del localStorage
       const keysToRemove = ['token', 'currentUser'];
-      
       keysToRemove.forEach(key => {
         try {
           localStorage.removeItem(key);
@@ -86,19 +111,16 @@ export class NavBar implements OnInit {
           console.warn(`Error removing ${key} from localStorage:`, error);
         }
       });
-
+      
       // Actualizar estado del componente
       this.isLoggedIn = false;
       this.isAdmin = false;
-
+      
       // Redirigir a login
       await this.router.navigate(['/login']);
-      
       console.log('Logout successful');
-      
     } catch (error) {
       console.error('Error during logout:', error);
-      
       // Aunque haya error, intentar limpiar localStorage y redirigir
       try {
         localStorage.clear();

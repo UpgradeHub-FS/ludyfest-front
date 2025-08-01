@@ -1,7 +1,7 @@
 section {
   font-family: 'Rubik', sans-serif;
   max-width: 1200px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 1.875rem;
 }
 
@@ -41,8 +41,7 @@ select {
 }
 
 /* Estilo para los inputs con el foco*/
-input.form-control:focus,
-select {
+input.form-control:focus {
   box-shadow: 0 0 0 2px var(--color-principal);
 }
 

@@ -1,6 +1,6 @@
 section {
     max-width: 1200px;
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 1.875rem;
 }
 
@@ -44,8 +44,7 @@ select {
 }
 
 /* Estilo para los inputs con el foco*/
-input.form-control:focus,
-select:focus {
+input.form-control:focus {
     border-color: var(--color-blanco-ludy);
     box-shadow: 0 0 0 0.125rem var(--color-principal);
 }
