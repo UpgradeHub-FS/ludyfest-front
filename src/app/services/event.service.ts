@@ -45,9 +45,9 @@ export class EventService {
   }
   // CREAR EVENTO
 
-  deleteRegisterToEvent(idEvent: number) {
+  deleteRegisterToEvent(event_id: number) {
     return lastValueFrom(
-      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register/${idEvent}`)
+      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register/${event_id}`)
     );
   }
 
