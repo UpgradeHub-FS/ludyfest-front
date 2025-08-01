@@ -8,31 +8,31 @@
       <!-- Botones que siempre se muestran -->
       <li class="nav_item" [routerLink]="['/home']">Home</li>
       <li class="nav_item" [routerLink]="['/events']">Events</li>
-      
+
       <!--  Mostrar Login y Register SOLO si NO está logueado -->
       @if (!isLoggedIn) {
-        <li class="nav_item" [routerLink]="['/login']">Login</li>
-        <li class="nav_item" [routerLink]="['/register']">Register</li>
+      <li class="nav_item" [routerLink]="['/login']">Login</li>
+      <li class="nav_item" [routerLink]="['/register']">Register</li>
       }
 
       <!--  Mostrar botones SOLO si está logueado -->
       @if (isLoggedIn) {
-        
-        <!-- PARTE 3 tarea : Botón Profile solo para usuarios normales (no admin) -->
-        @if (!isAdmin) {
-          <li class="nav_item" [routerLink]="['/profile']">Profile</li>
-        }
-        
-         <!-- PARTE 4 tarea : Botones exclusivos para administradores -->
-        @if (isAdmin) {
-          <!-- Botón Users: lleva a la gestión de usuarios (PrivateUserList) -->
-          <li class="nav_item" [routerLink]="['/users/private/admin']">Users</li>
-          
-          <!-- Botón Admin Events: lleva a la gestión de eventos (PrivateEventList) -->
-          <li class="nav_item" [routerLink]="['/events/private/admin']">Admin Events</li>
-        }
-        
-        <!-- Botón Logout para TODOS los usuarios logueados (normal y admin) -->
-        <li class="nav_item" (click)="logout()" style="cursor: pointer;">Logout</li>
+
+      <!-- PARTE 3 tarea : Botón Profile solo para usuarios normales (no admin) -->
+      @if (isLoggedIn) {
+      <li class="nav_item" [routerLink]="['/profile']">Profile</li>
+      }
+
+      <!-- PARTE 4 tarea : Botones exclusivos para administradores -->
+      @if (isAdmin) {
+      <!-- Botón Users: lleva a la gestión de usuarios (PrivateUserList) -->
+      <li class="nav_item" [routerLink]="['/users/private/admin']">Users</li>
+
+      <!-- Botón Admin Events: lleva a la gestión de eventos (PrivateEventList) -->
+      <li class="nav_item" [routerLink]="['/events/private/admin']">Admin Events</li>
+      }
+
+      <!-- Botón Logout para TODOS los usuarios logueados (normal y admin) -->
+      <li class="nav_item" (click)="logout()" style="cursor: pointer;">Logout</li>
       }
     </ul>
