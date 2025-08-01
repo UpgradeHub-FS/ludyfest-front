@@ -5,7 +5,7 @@
 
         @for(item of events; track item.users_id){
 
-        <app-card-my-events [event]="item"></app-card-my-events>
+        <app-card-my-events [event]="item" (cargarEventos)="loadEvents()"></app-card-my-events>
 
         }@empty {
         <h3 class="mensaje-no-eventos">No hay eventos aún. Apúntate!🎯</h3>

@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { IEvent } from '../../interfaces/IEvents';
 import { EventService } from '../../services/event.service';
 import { CardMyEvents } from '../card-my-events/card-my-events';
@@ -13,10 +13,15 @@ export class MyEvents {
   events: IEvent[] = [];
   eventsService = inject(EventService);
 
+
+
   async ngOnInit() {
+    await this.loadEvents();
+
+
+  }
+  async loadEvents() {
     const response = await this.eventsService.getMyEvent()
     this.events = response
   }
-
-
 }
