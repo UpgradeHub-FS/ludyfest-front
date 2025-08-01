@@ -1,61 +1,110 @@
-<!-- TÍTULO -->
 <div class="container">
-    <h2 class="title">Events</h2>
+    <div class="LogoYBuscador">
+        <h2 class="title">Events</h2>
+        <div>
+            <input class="BuscadorTexto" type="text" placeholder="Buscar..." [(ngModel)]="textEvent" />
+            &nbsp;
+            <button class="botonBuscarTexto" (click)="getEventTitle()">Buscar</button>
+        </div>
+
+    </div>
+
 
     <section class="my-3">
 
-        <!-- SELECTOR DE CATEGORÍAS -->
-        <div class="controls">
-            <select (change)="onChange($event)" class="form-select">
-                <option value=""> Elige categoría</option>
-                <option value="Conciertos"> Conciertos</option>
-                <option value="Parties"> Parties</option>
-                <option value="Experiencias"> Experiencias</option>
-                <option value="Torneos"> Torneos</option>
-                <option value="Cultura"> Cultura</option>
-                <option value="Cine"> Cine</option>
-            </select>
+        <div class="filterBar">
+            <!-- FILTRAR POR CATEGORIA -->
+            <div class="filterBar">
+                <select (change)="onChangeCategories($event)" class="form-select filterEvent">
+                    <option value=>Categoria</option>
+                    <option value=1> Conciertos</option>
+                    <option value=2> Parties</option>
+                    <option value=3> Experiencias</option>
+                    <option value=4> Torneos</option>
+                    <option value=5> Cultura</option>
+                    <option value=6> Cine</option>
+                </select>
 
-            <!-- BÚSQUEDA Y ORDEN -->
-            <input type="text" placeholder="🔎 Buscar..." [(ngModel)]="searchTerm" />
 
-            <select [(ngModel)]="sortOption" class="form-select">
-                <option value="">Ordenar por...</option>
-                <option value="az">▶ A-Z</option>
-                <option value="za">◀ Z-A</option>
-                <option value="date">📅 Fecha</option>
-            </select>
+                <!-- FILTRAR POR AFORO -->
+                <select (change)="onChangeAforo($event)" class="form-select filterEvent">
+                    <option value="">Aforo</option>
+                    <option value="0/50">0 a 50</option>
+                    <option value="50/100">50 a 100</option>
+                    <option value="100/250">100 a 250</option>
+                    <option value="250/100000">más de 250</option>
+                </select>
 
-            <select (change)="onChangeAforo($event)" class="form-select">
+                <div class="filterEvent barraDate">
+                    <p>Fecha de</p>
+                    <div class="filterEvent">
+                        <input class="dateBar" type="date" [(ngModel)]="dateInit" name="fechaInicio">
+                    </div>
+                    <p>a</p>
+                    <div class="filterEvent">
+                        <input class="dateBar" type="date" [(ngModel)]="dateEnd" name="fechaFin">
+                    </div>
+                    &nbsp;
+                    <button class="dateButoon" (click)="filterByDate()">Filtrar</button>
+                </div>
 
-                <option value="">Aforo</option>
-                <option value="0/50">0 a 50</option>
-                <option value="50/100">50 a 100</option>
-                <option value="100/250">100 a 250</option>
-                <option value="250/100000">más de 250</option>
-            </select>
+                <!-- FILTRAR POR RANGO DE PRECIO -->
+                <div class="filterEvent">
+                    <label class="contadorPrecio" for="customRange1">PRECIO: {{ priceValue }} € &nbsp; </label>
+                    <input type="range" class="custom-range" id="customRange1" min=0 max=500
+                        (change)="onChangePrice($event)" [(ngModel)]="priceValue">
+                </div>
+
+
+
+                <!-- FILTRAR POR FECHA -->
+
+
+
+
+            </div>
+
+
+
+
+
+
+
         </div>
 
 
         <!-- LISTADO DE EVENTOS -->
-        @for (event of filteredEvents; track event.id) {
-        <div class="event-card">
 
-            <img [src]="event.image" alt="{{ event.title }}" class="event-image" />
+        @for (event of arrEvents; track event.id) {
+        <div class="event-card">
+            <figure class="event-image">
+                <img [src]="event.image" alt="{{ event.image }}" />
+            </figure>
 
             <div class="event-info">
                 <h3>{{ event.title }}</h3>
+
                 <span class="badge"
                     [ngClass]="{ 'badge-success': event.status === 1, 'badge-danger': event.status === 0 }">
                     {{ event.status === 1 ? 'Upcoming' : 'Not available' }}
                 </span>
 
-                <p>📅 {{ event.date }} &nbsp; 👤 {{ event.capacity }}</p>
-                <p>💶 {{ event.price }}€</p>
+                <p>📅 {{ event.date }}</p>
+                <p>💶 {{ event.price }}€ &nbsp; 👤 {{ event.capacity }}</p>
 
+            </div>
+            <span class="badge" [ngClass]="getStatusClass(event.status)">
+                {{ getStatusText(event.status) }}
+            </span>
+
+            <div class="event-actions">
+                <button class="btn btn-primary" (click)="onClick(event.id)">Apuntarse</button>
+                <button [routerLink]="['/events', event.id]" class="btn btn-info">Ver Evento</button>
             </div>
 
         </div>
         }
     </section>
+
+
 </div>

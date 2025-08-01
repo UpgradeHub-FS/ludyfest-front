@@ -1,121 +1,144 @@
-import { Component, HostListener, OnInit, inject } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
+import { Component, HostListener, OnInit, inject, OnDestroy } from '@angular/core';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
+
 @Component({
- selector: 'nav-bar',              
- imports: [RouterLink],            
- templateUrl: './nav-bar.html',    
- styleUrl: './nav-bar.css'         
+  selector: 'nav-bar',
+  imports: [RouterLink],
+  templateUrl: './nav-bar.html',
+  styleUrl: './nav-bar.css'
 })
-export class NavBar implements OnInit {
- 
- isFixed: boolean = false;
- isLoggedIn: boolean = false;
- isAdmin: boolean = false;
- 
- //INJECTS
- private router = inject(Router);
- private authService = inject(AuthService);
- private userService = inject(UserService);
+export class NavBar implements OnInit, OnDestroy {
+  // BARRA DE NAVEGACION
+  isFixed: boolean = false;
+  isLoggedIn: boolean = false; // variable si el user esta logado
+  isAdmin: boolean = false; // si el user tiene el rol de admin
+  
+  // Inyec de las dependencias
+  private router = inject(Router);
+  
+  // 🚀 NUEVA FUNCIONALIDAD: Suscripción para detectar cambios de ruta
+  private routerSubscription?: Subscription;
 
- async ngOnInit(): Promise<void> {
-   try {
-     // Llama al método para verificar el estado de autenticación
-     await this.checkAuthStatus();
-   } catch (error) {
-     // Si hay un errorlo muestra en consola
-     console.error('Error checking authentication status:', error);
-     // Resetea las variables a estado no autenticado
-     this.isLoggedIn = false;
-     this.isAdmin = false;
-   }
- }
+  async ngOnInit(): Promise<void> {
+    try {
+      // Verificar estado de autenticación al cargar el componente
+      await this.checkAuthStatus();
+      
+      // 🚀 CLAVE: Escuchar cambios de ruta para actualizar automáticamente
+      this.routerSubscription = this.router.events
+        .pipe(
+          filter(event => event instanceof NavigationEnd)
+        )
+        .subscribe(async () => {
+          // Cada vez que navegas, verifica el estado de nuevo
+          await this.checkAuthStatus();
+        });
+        
+    } catch (error) {
+      console.error('Error checking authentication status:', error);
+      // En caso de error, asegurar que el usuario aparezca como no logueado
+      this.isLoggedIn = false;
+      this.isAdmin = false;
+    }
+  }
 
- @HostListener('window:scroll', [])
- // Método que se ejecuta cada vez que el usuario hace scroll
- onWindowScroll(): void {
-   // Si el scroll es mayor a 50px, fija la navbar
-   this.isFixed = window.scrollY > 50;
- }
+  // 🚀 NUEVA FUNCIONALIDAD: Limpiar suscripción para evitar memory leaks
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+  }
 
- // Método público que verifica si el usuario tiene un rol específico
- hasRole(role: string): boolean {
-   // Si el rol solicitado es 'admin'
-   if (role === 'admin') {
-     // Retorna true solo si está logueado Y es admin
-     return this.isLoggedIn && this.isAdmin;
-   }
-   // Para otros roles false por defecto
-   return false;
- }
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.isFixed = window.scrollY > 50;
+  }
 
- private async checkAuthStatus(): Promise<void> {
-   try {
-     // para llamar al servicio para verificar si está autenticado
-     this.isLoggedIn = await this.authService.isAuthenticated();
-     
-     // Si el usuario está logueado
-     if (this.isLoggedIn) {
-       // Para obtener los datos del usuario actual desde el servicio
-       const currentUser: any = await this.userService.getCurrentUser();
-       if (currentUser) {
-         // Verifica si el rol del usuario es un 'admin'
-         this.isAdmin = currentUser.rol === 'admin';
-       } else {
-         // Si no hay datos, no es admin
-         this.isAdmin = false;
-       }
-     } else {
-       // Si no está logueado, no puede ser admin
-       this.isAdmin = false;
-     }
-   } catch (error) {
-     // Si hay error lo muestramos en consola
-     console.error('Error in checkAuthStatus:', error);
-     // Resetea todo a estado no autenticado
-     this.isLoggedIn = false;
-     this.isAdmin = false;
-   }
- }
+  // Método para verificar si el usuario está autenticado
+  private async checkAuthStatus(): Promise<void> {
+    try {
+      // Obtener token del localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.isLoggedIn = true;
+        // Obtener datos del usuario desde localStorage
+        const currentUserString = localStorage.getItem('currentUser');
+        if (currentUserString) {
+          try {
+            const currentUser = JSON.parse(currentUserString);
+            // Verificar si es admin usando el campo 'rol' de la interfaz IUser
+            this.isAdmin = currentUser.rol === 'admin';
+            
+            //  DEBUG: Para ver qué está pasando (puedes quitarlo después)
+            console.log('🔄 Navbar Auth Updated:', {
+              isLoggedIn: this.isLoggedIn,
+              isAdmin: this.isAdmin,
+              userRole: currentUser.rol,
+              hasToken: !!token
+            });
+            
+          } catch (parseError) {
+            console.error('Error parsing currentUser:', parseError);
+            this.isAdmin = false;
+          }
+        } else {
+          this.isAdmin = false;
+        }
+      } else {
+        // No hay token, usuario no logueado
+        this.isLoggedIn = false;
+        this.isAdmin = false;
+        console.log('🔄 Navbar: No token found, user logged out');
+      }
+    } catch (error) {
+      console.error('Error in checkAuthStatus:', error);
+      // En caso de error, resetear estado
+      this.isLoggedIn = false;
+      this.isAdmin = false;
+    }
+  }
 
- // Método  para cerrar sesión del usuario
- async logout(): Promise<void> {
-   try {
-     // Llama al servicio de auth para hacer logout
-     await this.authService.logout();
-     // Resetea el estado de autenticación
-     this.isLoggedIn = false;
-     this.isAdmin = false;
-     // Redirigir al usuario a la página de login
-     await this.router.navigate(['/login']);
-     console.log('Logout successful');
-   } catch (error) {
-     // Si hay error durante logout, lo muestra en consola
-     console.error('Error during logout:', error);
-     try {
-       // para intentar un logout forzado por si no funciona la primera vez
-       await this.authService.forceLogout();
-       // Resetea el estado aunque haya habido error
-       this.isLoggedIn = false;
-       this.isAdmin = false;
-       // para redirigir al login de cualquier manera
-       await this.router.navigate(['/login']);
-     } catch (fallbackError) {
-       // Si nno funciona de ninguna manera muestra error crítico
-       console.error('Critical error during logout fallback:', fallbackError);
-     }
-   }
- }
+  // Método logout con sintaxis moderna y manejo de errores
+  async logout(): Promise<void> {
+    try {
+      // Limpiar todos los datos de autenticación del localStorage
+      const keysToRemove = ['token', 'currentUser'];
+      keysToRemove.forEach(key => {
+        try {
+          localStorage.removeItem(key);
+        } catch (error) {
+          console.warn(`Error removing ${key} from localStorage:`, error);
+        }
+      });
+      
+      // Actualizar estado del componente
+      this.isLoggedIn = false;
+      this.isAdmin = false;
+      
+      // Redirigir a login
+      await this.router.navigate(['/login']);
+      console.log('Logout successful');
+    } catch (error) {
+      console.error('Error during logout:', error);
+      // Aunque haya error, intentar limpiar localStorage y redirigir
+      try {
+        localStorage.clear();
+        this.isLoggedIn = false;
+        this.isAdmin = false;
+        await this.router.navigate(['/login']);
+      } catch (fallbackError) {
+        console.error('Critical error during logout fallback:', fallbackError);
+      }
+    }
+  }
 
- // Método  para actualizar el estado de autenticación
- async updateAuthStatus(): Promise<void> {
-   try {
-     // volver a la verificación de estado de autenticación
-     await this.checkAuthStatus();
-   } catch (error) {
-     // Si hay error, lo muestra en consola
-     console.error('Error updating auth status:', error);
-   }
- }
+  // Método para actualizar el estado cuando el usuario haga login desde otra página
+  async updateAuthStatus(): Promise<void> {
+    try {
+      await this.checkAuthStatus();
+    } catch (error) {
+      console.error('Error updating auth status:', error);
+    }
+  }
 }
