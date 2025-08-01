@@ -1,0 +1,98 @@
+/* __________________ barra de tareas ___________________ */
+
+.main_nav {
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  height: 80px;
+  padding: 12px 24px;
+  box-shadow: 1px 1px 10px #dadada;
+  border-start-start-radius: 25px;
+  border-start-end-radius: 25px;
+  overflow: hidden;
+}
+
+.main_nav .container_nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* ______menu ______ */
+.nav_menu {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  margin-top: 15px;
+  flex-shrink: 1;
+  /* Permite que se reduzca si no cabe */
+}
+
+.nav_item {
+  cursor: pointer;
+}
+
+.nav_item:hover {
+  font-size: 100%;
+  font-style: inherit;
+  color: var(--color-principal);
+  text-shadow: 3px 3px 5px var();
+}
+
+
+
+/* _________ logo _________ */
+.logo {
+  justify-content: flex-start;
+  height: 50px;
+  transition: 0.5s;
+}
+
+.logo:hover {
+  height: 51px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* _________________ ANCLAR BARRA DE TAREAS ______________ */
+.main_nav.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+/* __________________________ FORMATO MOVIL ____________________________ */
+@media (max-width: 1000px) {
+  .logo {
+    display: none;
+  }
+
+  .main_nav .container_nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav_menu {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 15px;
+    flex-shrink: 1;
+    /* Permite que se reduzca si no cabe */
+  }
+}

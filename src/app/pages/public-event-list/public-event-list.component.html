@@ -1,0 +1,63 @@
+<!-- CONTROLES DE BÚSQUEDA -->
+<div class="container">
+  <h2 class="title">Events</h2>
+  <input type="text" placeholder="🔎Buscar..." [(ngModel)]="searchTerm" />
+
+  <!-- selector categorías -->
+  <div class="controls">
+    <select (change)="onChange($event)" class="form-select">
+      <option value=""> Elige categoría</option>
+      <option value="Conciertos"> Conciertos</option>
+      <option value="Parties"> Parties</option>
+      <option value="Experiencias"> Experiencias</option>
+      <option value="Torneos"> Torneos</option>
+      <option value="Cultura"> Cultura</option>
+      <option value="Cine"> Cine</option>
+    </select>
+
+    <!-- ordenar por-->
+    <select [(ngModel)]="sortOption" class="form-select">
+      <option value="">Ordenar por...</option>
+      <option value="az">▶ A-Z</option>
+      <option value="za">◀ Z-A</option>
+      <option value="date">📅 Fecha</option>
+    </select>
+
+    <select (change)="onChange($event)" class="form-select">
+      <option value="">Aforo</option>
+      <option value="0/50">0 a 50</option>
+      <option value="50/100">50 a 100</option>
+      <option value="100/250">100 a 250</option>
+      <option value="250/100000">más de 250</option>
+    </select>
+
+
+  </div>
+
+
+  @for (event of filteredEvents; track $index) {
+  <div class="event-card">
+
+    <img [src]="event.image" alt="{{ event.title }}" class="event-image" />
+
+    <div class="event-info">
+      <h3>{{ event.title }}</h3>
+      <p>📅 {{ event.date }} &nbsp; &nbsp; 👤 {{ event.capacity }}</p>
+      <p class="event-description">{{ event.description }}</p>
+      <p class="event-price">${{ event.price }}</p>
+      <p class="event-address">📍 {{ event.address }}</p>
+    </div>
+    <span class="badge" [ngClass]="getStatusClass(event.status)">
+      {{ getStatusText(event.status) }}
+    </span>
+    <div class="event-actions">
+      <button class="btn btn-primary" (click)="onClick(event.id)">Apuntarse</button>
+      <button [routerLink]="['/events/', event.id]" class="btn btn-info">Ver Evento</button>
+    </div>
+  </div>
+  } @empty {
+
+  <div class="no-events">
+    <p>No hay eventos disponibles</p>
+  </div>
+  }

@@ -1,0 +1,16 @@
+<!-- PERFIL DE USUARIO -->
+<div class="container">
+  <h2 class="title">Mi Perfil</h2>
+
+  <div class="user-card">
+    <div class="user-info">
+      <h3>{{ user.name }}</h3>
+      <p>Email: {{ user.email }}</p>
+      <p>Rol: {{ user.rol }}</p>
+    </div>
+    <button class="btn btn-info" [routerLink]="['/update-user']">Editar usuario</button>
+  </div>
+
+  <app-my-events></app-my-events>
+
+</div>

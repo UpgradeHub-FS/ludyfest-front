@@ -1,0 +1,410 @@
+/* ___________ GENERALES __________ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente-principal);
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+
+select {
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    flex: 1;
+}
+
+
+/* ___________ TITULO Y BUSCADOR DE TEXTO ___________ */
+
+.LogoYBuscador {
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 2.8125rem;
+    color: var(--color-principal);
+    font-size: clamp(4.9rem, 2.5vw, 2.4rem);
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.BuscadorTexto {
+    font-size: 150%;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.botonBuscarTexto {
+    font-size: 150%;
+    border-radius: 50px;
+    color: white;
+    background-color: var(--color-principal);
+    border: 3px solid var(--color-principal);
+}
+
+
+/* ____________ BARRA CON LOS FILTROS _____________ */
+
+.filterBar {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    margin-bottom: 2%;
+    justify-content: space-between;
+
+}
+
+.filterEvent {
+    text-align: center;
+    align-items: center;
+    display: flex;
+
+}
+
+.filterEvent>p {
+    padding-inline: 10px;
+
+
+}
+
+
+
+/* PRECIO */
+
+.dateBar {
+
+    border-color: rgb(255, 255, 255);
+    border: 1px solid white;
+}
+
+.dateButoon {
+    height: 30px;
+    border-radius: 50px;
+    color: white;
+    background-color: var(--color-principal);
+    border: 3px solid var(--color-principal);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* EVENT CARD */
+.event-card {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    border: 1px solid #ffffff;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.event-card:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* IMAGEN EVENTO */
+
+figure {
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 15px;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* INFORMACIÓN EVENTO */
+.event-info {
+    flex-grow: 1;
+}
+
+.event-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5A2DA4;
+}
+
+.event-info p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #666;
+    /* color suave para la fecha */
+}
+
+/* ESTADO DEL EVENTO */
+.badge {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--color-blanco-ludy);
+    white-space: nowrap;
+}
+
+.badge-success {
+    background-color: var(--color-accion-exito);
+}
+
+.badge-danger {
+    background-color: var(--color-accion-error);
+}
+
+/* BOTONES */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: #00d0ff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #03b5dc;
+    transform: scale(1.05);
+}
+
+.btn-update {
+    background-color: #7132d5;
+    color: white;
+}
+
+.btn-update:hover {
+    background-color: #561eb6;
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background-color: #ef152b;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #be2c3a;
+    transform: scale(1.05);
+}
+
+
+/* BOTONES CONTENEDOR */
+.event-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+/* Imagenes */
+.event-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin-right: 15px;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: block;
+}
+
+
+/* RESPONSIVE */
+
+/* TABLET */
+@media (max-width:1056px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .event-card {
+        flex-direction: row;
+        align-items: center;
+    }
+
+
+    .filterBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filterEvent {
+        font-size: 20px;
+        text-align: center;
+        align-items: center;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+/* MÓVIL*/
+@media (max-width: 850px) {
+
+
+
+
+
+    .filterEvent {
+        font-size: 20px;
+        text-align: center;
+        align-items: center;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+
+    .LogoYBuscador {
+        display: flex;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .BuscadorTexto {
+        font-size: 250%;
+        border-radius: 20px;
+        padding-left: 10px;
+    }
+
+    .botonBuscarTexto {
+        font-size: 250%;
+    }
+
+
+
+    .event-image {
+        width: 100%;
+        height: 200px;
+        aspect-ratio: auto;
+        flex-shrink: 0;
+        border-radius: 12px;
+    }
+
+    .container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+
+    }
+
+
+    .event-card {
+        margin: 1rem auto;
+        width: 50%;
+        height: 50%;
+        min-width: 65%;
+        min-height: 70%;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .event-info h3 {
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem;
+    }
+
+    .badge {
+        margin-top: 6px;
+    }
+
+    .event-image {
+        width: 120px;
+        height: 160px;
+        border-radius: 12px;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+/* Cierre del media query de 850px */
+
+@media (max-width: 720px) {
+    .LogoYBuscador {
+        width: 100%;
+    }
+
+    .BuscadorTexto {
+        font-size: 200%;
+    }
+
+    .botonBuscarTexto {
+        font-size: 200%;
+    }
+
+
+    .filterEvent {
+        font-size: 100%;
+        text-align: center;
+        align-items: center;
+        height: 40px;
+        display: flex;
+
+        margin-top: 10px;
+    }
+}

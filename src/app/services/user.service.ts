@@ -1,0 +1,79 @@
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { IUser } from '../interfaces/IUser';
+import { lastValueFrom } from 'rxjs';
+import { IUserLogin } from '../interfaces/IUserLogin';
+import { IUpdateUserResponse } from '../interfaces/IUpdateUserResponse';
+
+
+type LoginResponse = {
+  token?: string,
+  type?: string,
+  success: boolean,
+  message: string,
+  user: IUser
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  getCurrentUser() {
+    throw new Error('Method not implemented.');
+  }
+
+  private httpclient = inject(HttpClient);
+  private baseUrl: string = 'http://localhost:8000/auth';
+
+  registro(body: IUser) {
+    return lastValueFrom(
+      this.httpclient.post<LoginResponse>(`${this.baseUrl}/register`, body)
+    )
+  }
+
+  login(body: IUserLogin) {
+    return lastValueFrom(
+      this.httpclient.post<LoginResponse>(`${this.baseUrl}/login`, body)
+    );
+  }
+
+  getAll() {
+    return lastValueFrom(
+      this.httpclient.get<IUser[]>('http://localhost:8000/users')
+    );
+  }
+
+  deleteUserById(user_id: number) {
+    return lastValueFrom(
+      this.httpclient.delete<IUser>(`http://localhost:8000/users/${user_id}`)
+    );
+  }
+
+
+  isLogged() {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      return false
+    }
+    return true
+  }
+
+  getById(user_id: number) {
+    return lastValueFrom(
+      this.httpclient.get<IUser>(`http://localhost:8000/users/${user_id}`)
+    );
+  }
+
+  getProfile() {
+    return lastValueFrom(
+      this.httpclient.get<IUser>(`http://localhost:8000/users/profile`)
+    );
+  }
+
+  updateUser(body: IUser) {
+    return lastValueFrom(
+      this.httpclient.put<IUpdateUserResponse>(`http://localhost:8000/users`, body)
+    );
+  }
+
+}

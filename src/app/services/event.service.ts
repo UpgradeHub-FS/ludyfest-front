@@ -1,0 +1,128 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { IEvent } from '../interfaces/IEvents';
+import { IRegisterToEvent } from '../interfaces/IRegisterToEvent';
+import { IRegisterEventSubscribe } from '../interfaces/IRegisterEventSubscribe';
+import { IRegisterResponse } from '../interfaces/IRegisterResponse';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EventService {
+  private httpClient = inject(HttpClient);
+  private baseUrl: string = 'http://localhost:8000/events';
+
+  getAll() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}`)
+    );
+  }
+
+  getAllHome() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/recently`)
+    );
+  }
+
+  getMyEvent() {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/my-events`)
+    )
+  }
+
+
+  getEventById(idEvent: number) { //he cambiado el id por idEvent!!!!! OJO!!!!s
+    return lastValueFrom(
+      this.httpClient.get<IEvent>(`${this.baseUrl}/${idEvent}`)
+    );
+  }
+  // REGISTRARSE A UN EVENTO
+  registerToEvent(body: IRegisterToEvent) {
+    return lastValueFrom(
+      this.httpClient.post<IRegisterToEvent>(`${this.baseUrl}/register`, body)
+    );
+  }
+  // CREAR EVENTO
+
+  deleteRegisterToEvent(event_id: number) {
+    return lastValueFrom(
+      this.httpClient.delete<IRegisterResponse>(`${this.baseUrl}/register/${event_id}`)
+    );
+  }
+
+  createEvent(newEvent: IEvent) {
+    return lastValueFrom(
+      this.httpClient.post<IEvent>(`${this.baseUrl}`, newEvent)
+    );
+  }
+
+  updateEvent(idEvent: number, event: Event) {
+    return lastValueFrom(
+      this.httpClient.put<IEvent>(`${this.baseUrl}/${idEvent}`, event)
+    );
+  }
+
+  // BORRAR POR ID
+  deleteEventById(idEvent: number) {
+    return lastValueFrom(
+      this.httpClient.delete<IEvent>(`${this.baseUrl}/${idEvent}`)
+    );
+  }
+  getRegisteredEventsByUserId(userId: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/registered/user/${userId}`)
+    );
+  }
+
+
+
+  // FILTRAR POR CAPACIDAD
+  filterByCapacity(min_capacity: number, max_capacity: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/capacity/${min_capacity}/${max_capacity}`
+      ));
+  }
+
+
+  // FILTRAR POR PRECIO
+  filterByPrice(min_price: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/price/${min_price}`));
+  }
+
+
+  // FILTRAR POR CATEGORIA
+  get_event_by_category(category: number) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/category/${category}`)
+    );
+  }
+
+
+  // FILTRAR POR CAPACIDAD
+  filterByDate(start_date: string, end_date: string) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/date/${start_date}/${end_date}`
+      ));
+  }
+
+  // FILTRAR POR TEXTO
+  getEventTitle(text: string) {
+    return lastValueFrom(
+      this.httpClient.get<IEvent[]>(`${this.baseUrl}/filter/${text}`
+      ));
+  }
+
+
+
+
+
+  // REGISTRAR USUARIO
+  registerUserToEvent(body: IRegisterEventSubscribe) {
+    return lastValueFrom(
+      this.httpClient.post<IRegisterResponse>(`${this.baseUrl}/register/register-event`, body)
+    );
+  }
+
+}

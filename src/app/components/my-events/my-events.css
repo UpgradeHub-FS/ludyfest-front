@@ -1,0 +1,86 @@
+/* Estilo general del contenedor */
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Título del perfil */
+.title {
+    text-align: left;
+    font-size: 2.8125rem;
+    margin: 2.5rem 0;
+    color: var(--color-principal);
+    opacity: 0.5;
+}
+
+/* Mensaje sin eventos */
+.no-events {
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+
+
+
+/* _________________________ */
+.event_section {
+    text-align: center;
+    gap: 50px;
+    width: 100%;
+    overflow: visible;
+    padding: 0px 10px 100px 10px;
+}
+
+
+.logo {
+    display: none;
+}
+
+.event__cards {
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    align-items: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    gap: 45px;
+}
+
+
+
+
+/*_____________________ 3 cards ______________________ */
+@media (max-width: 1864px) {
+    .event__cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/*_____________________ 2 cards ______________________ */
+
+@media (max-width: 1420px) {
+    .event__cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*_____________________ 1 card ______________________ */
+@media (max-width: 1000px) {
+
+    .event__cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .logo {
+        display: flex;
+        width: 100%;
+    }
+
+    .title {
+        display: none;
+    }
+}
