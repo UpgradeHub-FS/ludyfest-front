@@ -24,6 +24,8 @@ img {
     border-top-left-radius: 20px;
     width: 250px;
     height: 150px;
+    object-fit: cover;
+    display: block;
 }
 
 
