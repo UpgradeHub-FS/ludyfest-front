@@ -62,3 +62,28 @@ input[type="submit"]:disabled {
   color: white;
   opacity: 0.5;
 }
+
+/* Contenedor del input con botón */
+.contenedor-input {
+  position: relative;
+}
+
+/* Espacio para el botón dentro del input */
+.contenedor-input input.form-control {
+  padding-right: 2.5rem;
+  /* Deja espacio para que no se superponga el texto al botón */
+}
+
+/* Botón del ojito */
+.boton-ojito {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+}
