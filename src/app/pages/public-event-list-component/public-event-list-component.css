@@ -7,10 +7,7 @@
 }
 
 .container {
-    <<<<<<< HEAD max-width: 1200px;
-    =======max-width: 100%;
-    >>>>>>>origin/develop margin: 0 auto;
-    padding: 1rem;
+    max-width: 100%;
     margin: 0 auto;
     padding: 40px;
 }
